@@ -72,6 +72,11 @@
       "sha256": "810edb8593db49ebd0141f44a487d6dd72802a96e5ee20b7ce418a3ec3c84c03"
     },
     {
+      "file": "README.md",
+      "size": 1811,
+      "sha256": "542c3acf15dc068146a128770531bb44595940b0023f2c55340932672bba0b5a"
+    },
+    {
       "file": "template/app/assets/themes/architecture-studio.css",
       "size": 529,
       "sha256": "25654ee375a90b9c1766e58f18c055f82214d5a580e62cc5e614cd4abd2c27b3"

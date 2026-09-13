@@ -44,9 +44,9 @@ Status as of 2026-09-14.
 - CI enforces canonical runtime validation, portable packaging drift/checksums,
   full temporary empty-directory initialization, and a final checksum recheck.
 
-## Stage 4 — Publish Public Portable Release: Pending
+## Stage 4 — Publish Public Portable Release: Complete
 
-Complete only in this order:
+Completed in this order:
 
 1. Trigger a clean CI run after the latest changes.
 2. Confirm the hosted CI full portable validation passes.
@@ -65,6 +65,20 @@ Complete only in this order:
    ```text
    template/tests/generated/agent-run.json → status: "success"
    ```
+
+All requirements passed for `course-factory-portable-v1.1`, including:
+
+- hosted CI;
+- fresh-clone validation;
+- standalone isolated skill installation;
+- empty-repository initialization;
+- dependency installation;
+- generated-course validation;
+- the full 14-gate canonical pipeline.
+
+`course-factory-portable-v1` is retained as a historical release. The
+standalone-validation defect found during isolated testing was corrected in
+`v1.1`.
 
 Only after stable tagged installation decide whether to update
 `/Users/jensu/.codex/skills/course-factory`, replace it with the portable

@@ -122,6 +122,7 @@ courses:
 function build() {
   fs.rmSync(frameworkRoot, { recursive: true, force: true });
   fs.mkdirSync(frameworkRoot, { recursive: true });
+  copyFile(path.join(sourceRoot, 'README.md'), path.join(frameworkRoot, 'README.md'));
   copyFile(path.join(sourceRoot, 'AGENT.md'), path.join(frameworkRoot, 'AGENT.md'));
   copyFile(
     path.join(sourceRoot, 'Proposed-Architecture.md'),
@@ -164,6 +165,7 @@ function writeManifest() {
 
 function expectedRootEntries() {
   const entries = [
+    { source: path.join(sourceRoot, 'README.md'), destination: 'README.md' },
     { source: path.join(sourceRoot, 'AGENT.md'), destination: 'AGENT.md' },
     {
       source: path.join(sourceRoot, 'Proposed-Architecture.md'),
