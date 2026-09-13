@@ -9,7 +9,7 @@ metadata:
 
 Turn a topic and curriculum into a complete, validated static interactive course
 in any destination repository. This skill is self-contained and does not depend
-on the Architecture-Interactive-Web-Learning checkout.
+on a Course Factory source checkout.
 
 ## Portable Contract
 

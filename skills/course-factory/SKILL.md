@@ -18,7 +18,7 @@ template/scripts/course-factory.js
 template/scripts/agent-run.js
 ```
 
-If either is missing, stop and ask for the correct Architecture-Interactive-Web-Learning repository rather than improvising a course framework.
+If either is missing, stop and ask for the correct Course Factory repository rather than improvising a course framework.
 
 ## Workflow
 

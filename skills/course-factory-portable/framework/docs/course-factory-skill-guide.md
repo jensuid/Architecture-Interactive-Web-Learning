@@ -6,7 +6,7 @@ how it works, and how to use it to build a complete static interactive course.
 ## What the Skill Is
 
 `course-factory` is a Codex skill that packages the repeatable workflow for the
-Architecture-Interactive-Web-Learning framework.
+Course Factory framework.
 
 It does not replace the framework. The framework remains the deterministic
 engine that:

@@ -266,7 +266,7 @@ The coding agent works in two locations.
 Source repository containing the skill:
 
 ```text
-/Volumes/JensData/Jensu-Projects/Architecture-Interactive-Web-Learning
+/path/to/course-factory
 ```
 
 Destination repository:
@@ -844,4 +844,3 @@ To adapt the workflow:
 - Do not hand-edit `dist/`.
 - Do not add a custom component without a concrete need.
 - Do not stop before `agent-run.json` reports `success`.
-
