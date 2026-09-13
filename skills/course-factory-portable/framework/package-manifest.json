@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "file": ".github/workflows/ci.yml",
+      "size": 1797,
+      "sha256": "a825c7ff2aabab997e503ea9cda55d959530116d1213c60dc8b6b5c7d5eccdff"
+    },
+    {
+      "file": ".github/workflows/deploy-pages.yml",
+      "size": 1336,
+      "sha256": "80f27802bf425614f9cfba4030a38ad8204c134f2bbb3ff38cbbfd8d06c727e9"
+    },
+    {
+      "file": "AGENT.md",
+      "size": 2500,
+      "sha256": "e0708f271619d9da318ab0d620b16d8748aa636225777365ab182836c70d01b8"
+    },
+    {
+      "file": "course.yaml",
+      "size": 1107,
+      "sha256": "054dce227996b6e4ee2eb9dc562e5fefce1aada435711f5d3f098ca067978d61"
+    },
+    {
+      "file": "courses.yaml",
+      "size": 189,
+      "sha256": "4887f98e615265db999eca507bbafc810ad0a002c17d9258e14a0f955dbd4ccd"
+    },
+    {
+      "file": "docs/agent-and-curriculum-prompts.md",
+      "size": 6991,
+      "sha256": "82703441b02d5e3c36aa62272e67d5e64cf9da593fba55532994165f91fe2f43"
+    },
+    {
+      "file": "docs/course-factory-skill-guide.md",
+      "size": 9147,
+      "sha256": "e4ca70c504dbd7fa0c696ac788c8bb2211b46e0d190d8a1f2f7762c6384eec61"
+    },
+    {
+      "file": "docs/DEPLOYMENT.md",
+      "size": 1300,
+      "sha256": "55ad37993e2d948708104ef920f6fdf520af51c5ba11fd83196e0cd4c391645e"
+    },
+    {
+      "file": "docs/topic-course-workflow.md",
+      "size": 8918,
+      "sha256": "ed2c8de7b4afc3abdbb609660a678a9fb1df86771e2e0449f09ab40fd40b6a13"
+    },
+    {
+      "file": "docs/USER-GUIDE.md",
+      "size": 9710,
+      "sha256": "8280d3b8f1e045ecb764d2a1e4e089b09c6d9b3a4b2cebc4fc91fd05072e5da6"
+    },
+    {
+      "file": "docs/zero-to-final-guide.md",
+      "size": 7164,
+      "sha256": "1c39672072387f2d177e9f4a9c93a52b1a50857685c626ad904a6c5f49525360"
+    },
+    {
+      "file": "notes/release-notes.md",
+      "size": 1162,
+      "sha256": "afd4190cb7d011a0c483939f6d66436efe475ff8cf7141e234ec0269c22136fe"
+    },
+    {
+      "file": "Proposed-Architecture.md",
+      "size": 7949,
+      "sha256": "810edb8593db49ebd0141f44a487d6dd72802a96e5ee20b7ce418a3ec3c84c03"
+    },
+    {
+      "file": "template/app/assets/themes/architecture-studio.css",
+      "size": 529,
+      "sha256": "25654ee375a90b9c1766e58f18c055f82214d5a580e62cc5e614cd4abd2c27b3"
+    },
+    {
+      "file": "template/app/content/data/demo.json",
+      "size": 845,
+      "sha256": "b27c2c01f0f712a026bce25fe59143cfd588cf527c1f5203125661959f9fe1a5"
+    },
+    {
+      "file": "template/app/content/final-assessment.md",
+      "size": 846,
+      "sha256": "0cc1e02917a692f5b3cacf876afe1a817dfd2a34b827f6d42386f6c994370d24"
+    },
+    {
+      "file": "template/app/content/home.md",
+      "size": 1905,
+      "sha256": "30dcd4916ebd90ac5d166b845981259e1089b5a6d91b60213a64b1b9cb1c15eb"
+    },
+    {
+      "file": "template/app/content/M1.md",
+      "size": 1606,
+      "sha256": "21cfbc94660751948ac7a976853389ffc00e89c990ea374d5dde02adc6aa626b"
+    },
+    {
+      "file": "template/app/content/M2.md",
+      "size": 3052,
+      "sha256": "18ba9357f6a4ee000387899e9a99da059df1336b0dc57bcab6da6229ca6e75dc"
+    },
+    {
+      "file": "template/app/content/M3.md",
+      "size": 2032,
+      "sha256": "30216af27faf15988f5f357851f8b2775b32bd6b3f6b51ac2fd82729a7cfcb84"
+    },
+    {
+      "file": "template/app/content/media/demo.mp4",
+      "size": 3914,
+      "sha256": "cba3e792b9ef022c65219b9db6f63855584efd256ec7c7b4dce1d46d5bcaf92f"
+    },
+    {
+      "file": "template/app/content/media/placeholder.png",
+      "size": 1504,
+      "sha256": "c83303a4633f7ee192589682ae1bc469acf856c6fab4809e04ffc04c24e3cbd3"
+    },
+    {
+      "file": "template/app/course-manifest.json",
+      "size": 2726,
+      "sha256": "c7b03986f3fbb8e8cc59df660bc443d1770951bcaa4ebd35e49b3bff101e4e17"
+    },
+    {
+      "file": "template/app/courses.html",
+      "size": 1505,
+      "sha256": "c54dede753a6a6a82af07922f41baa8bc496a3ef5379b6179ee3ec3a837aeefc"
+    },
+    {
+      "file": "template/app/courses.json",
+      "size": 199,
+      "sha256": "257019126ff53a53975e8d08e181ad6337c1a2fd754fe45a7cd63bcc2bcd550a"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_AMS-Regular.woff2",
+      "size": 28076,
+      "sha256": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Caligraphic-Regular.woff2",
+      "size": 6908,
+      "sha256": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Main-Bold.woff2",
+      "size": 25324,
+      "sha256": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Main-Italic.woff2",
+      "size": 16988,
+      "sha256": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Main-Regular.woff2",
+      "size": 26272,
+      "sha256": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Math-Italic.woff2",
+      "size": 16440,
+      "sha256": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Size1-Regular.woff2",
+      "size": 5468,
+      "sha256": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Size2-Regular.woff2",
+      "size": 5208,
+      "sha256": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Size3-Regular.woff2",
+      "size": 3624,
+      "sha256": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Size4-Regular.woff2",
+      "size": 4928,
+      "sha256": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0"
+    },
+    {
+      "file": "template/app/css/fonts/KaTeX_Typewriter-Regular.woff2",
+      "size": 13568,
+      "sha256": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b"
+    },
+    {
+      "file": "template/app/css/style.css",
+      "size": 36775,
+      "sha256": "ea8842910e6819080b897dd6e4d88226c3d1d33d3ab48a3b872336bfdec17d04"
+    },
+    {
+      "file": "template/app/index.html",
+      "size": 2674,
+      "sha256": "b8807f1bd06db4f0d00c2397368d4f0e0a69058d604efb0b084a40611e296f2d"
+    },
+    {
+      "file": "template/app/js/components/certificate.js",
+      "size": 2846,
+      "sha256": "fa37d60a874bae3a15de6d37acee7fcdcaa05f927a8aae54363ff18cd4715207"
+    },
+    {
+      "file": "template/app/js/components/chartlab.js",
+      "size": 5312,
+      "sha256": "cc95476b785e9bc148fa3dce5efbba9cf52ad78847cdca136331e9c852bf3c2a"
+    },
+    {
+      "file": "template/app/js/components/diagram.js",
+      "size": 1021,
+      "sha256": "0e5a28fe5f89bc5713ef4161eddb262d08232e115339b0e8ea97e147a73014a8"
+    },
+    {
+      "file": "template/app/js/components/flashcard.js",
+      "size": 2437,
+      "sha256": "5ad9bc221e035866fec48e5c326d07ee4b7b695b68304eccb532fe5c2fffa0a7"
+    },
+    {
+      "file": "template/app/js/components/objectives.js",
+      "size": 1593,
+      "sha256": "56723de6d79a6d2ea4ab4935aa5372991520a060e5c746997da30ac095b19bfe"
+    },
+    {
+      "file": "template/app/js/components/progresskit.js",
+      "size": 2375,
+      "sha256": "80e2f25bf2ba87a3a9e41417a4fcef16ace10db527d20862d6c5bdd49c99ed95"
+    },
+    {
+      "file": "template/app/js/components/quiz.js",
+      "size": 3857,
+      "sha256": "a9cc3f9f6165255e5eef16ebd20cf3fbcdc0feac1c8013f96e11ae141ad089af"
+    },
+    {
+      "file": "template/app/js/components/reviewpack.js",
+      "size": 949,
+      "sha256": "a938b743603b12a8fa5a1c13b13bf798b5ecc64f59a2109aa3ef4352152255b7"
+    },
+    {
+      "file": "template/app/js/deck.js",
+      "size": 2455,
+      "sha256": "77cc18a33737b44e72d1d1f01bc06d9aa224abd3ecb56fa6c0ab07b80df83370"
+    },
+    {
+      "file": "template/app/js/engine.js",
+      "size": 2812,
+      "sha256": "e328e617c6f9242845be5aab3a00128098fdecacabd56414992937ca849cf748"
+    },
+    {
+      "file": "template/app/js/main.js",
+      "size": 1602,
+      "sha256": "3457d7dcfbe80431dcd19f5ba4191c0f69f33121999b1236d04496915fb5ebae"
+    },
+    {
+      "file": "template/app/js/renderer.js",
+      "size": 19307,
+      "sha256": "f899f23721eafad1eb2bfeafc476a93ec2ed1df270df11f6e5941437fa8288e0"
+    },
+    {
+      "file": "template/app/js/shell.js",
+      "size": 19400,
+      "sha256": "289799f6138a7fe1df08dcf8e05fdd93c58bed850b5669782cb429b6457059be"
+    },
+    {
+      "file": "template/app/js/teacher.js",
+      "size": 2682,
+      "sha256": "faa0e4583f29eeba2333b4c2cb7638c49f721a2e95eaa5b270d47b91888c0a6b"
+    },
+    {
+      "file": "template/app/js/vendor/chart.umd.js",
+      "size": 205363,
+      "sha256": "6e708cb2c2b41604db1f5dec01724856ec53ac867899a1e4e2cfb8f0ace6bed9"
+    },
+    {
+      "file": "template/app/js/vendor/highlight.min.js",
+      "size": 121727,
+      "sha256": "837a6fa5b0c736b52bbde2b2b6190f305da3fc9ed41681db5321507057b5c846"
+    },
+    {
+      "file": "template/app/js/vendor/katex.min.css",
+      "size": 23935,
+      "sha256": "629a6fbf3a5489fa0eb1952e63d1833e0b4c8d14c4b47d3168047cabfbbdafb7"
+    },
+    {
+      "file": "template/app/js/vendor/katex.min.js",
+      "size": 275414,
+      "sha256": "e6bfe5deebd4c7ccd272055bab63bd3ab2c73b907b6e6a22d352740a81381fd4"
+    },
+    {
+      "file": "template/app/js/vendor/marked.min.js",
+      "size": 35479,
+      "sha256": "15fabce5b65898b32b03f5ed25e9f891a729ad4c0d6d877110a7744aa847a894"
+    },
+    {
+      "file": "template/app/teacher.html",
+      "size": 1209,
+      "sha256": "20372f20985a82c7d607baf72a77338c671bb0eace9442f889d33cce4f8bde78"
+    },
+    {
+      "file": "template/ARCHITECTURE.md",
+      "size": 20104,
+      "sha256": "db36eda4cdf9f4f19be37ec75bdf05e7ccbb43a5be238e1e4c9c64834c8f6d28"
+    },
+    {
+      "file": "template/README.md",
+      "size": 6584,
+      "sha256": "ff1c40bc73434f254e267c16369baa8f794cfe7300cba6e9da7c6df262c012c0"
+    },
+    {
+      "file": "template/scripts/agent-run.js",
+      "size": 2759,
+      "sha256": "729e7cc90b374d7a985f2de33e09032ca430ecad485636cef2d477a7501d174b"
+    },
+    {
+      "file": "template/scripts/compile-catalog.js",
+      "size": 890,
+      "sha256": "6979e892a9eab6d90d4d1fa60ed79c652773f74d36be824f25307aeec4517416"
+    },
+    {
+      "file": "template/scripts/compile-course.js",
+      "size": 11891,
+      "sha256": "46d0ec297e44273e6398b57815805480f45b974044de23c9ade34cdb18577675"
+    },
+    {
+      "file": "template/scripts/course-factory.js",
+      "size": 9209,
+      "sha256": "0afe1bcd22ec12bd40f900858b3bcd24f9d8d3d006ec8d6c7cb89e8959f52c52"
+    },
+    {
+      "file": "template/scripts/lib/manifest-schema.js",
+      "size": 12949,
+      "sha256": "e746f6966a93d3f4efc06482d28572c5bd0a5434633c9a96fb8c4e2eece21af2"
+    },
+    {
+      "file": "template/scripts/production-check.js",
+      "size": 2350,
+      "sha256": "a4e4ac06d5d8506f909a81f88af922e41035656ebf937a3e98b5e54cad9ad5b4"
+    },
+    {
+      "file": "template/scripts/publish.js",
+      "size": 3851,
+      "sha256": "d2573f0a267ad8342fa030fcaee14de96d311308176193ce3f7cd613e3c080f5"
+    },
+    {
+      "file": "template/scripts/release-check.js",
+      "size": 6183,
+      "sha256": "e21dd5f4aeadf5373a9956869b7f38b1348f779235d73ee2d11982f2d447db3e"
+    },
+    {
+      "file": "template/scripts/validate-courses.js",
+      "size": 1119,
+      "sha256": "96a4f91bb7193ca46f4081593ecc57469e098fd5bf5ee5b882bcd7f07293d725"
+    },
+    {
+      "file": "template/scripts/verify-publish.js",
+      "size": 1936,
+      "sha256": "d6d22e9b6fad2ac4e9edbb0fb22ec8b0873ff4c72e94fd9a638fb103bec8e61e"
+    },
+    {
+      "file": "template/tests/course-factory.js",
+      "size": 2852,
+      "sha256": "daf8c7b1cd47ebc061b09e5a1c11c9a5b844e0903fdeab4885aa6cb49d8136fa"
+    },
+    {
+      "file": "template/tests/fixtures/course-factory/curriculum.json",
+      "size": 746,
+      "sha256": "ecc022734680da48dd73d52ea9befca99b9a75db1b6672ec93bb997bb92fbba6"
+    },
+    {
+      "file": "template/tests/fixtures/manifest-schema/content/M1.md",
+      "size": 151,
+      "sha256": "453f588da54ce8b60cd3cbf8c296ce2c76699d4dabb096f536cfd7c21e0977dd"
+    },
+    {
+      "file": "template/tests/fixtures/manifest-schema/invalid-catalog.yaml",
+      "size": 322,
+      "sha256": "fa1773c70c3112f02898edba8a93a9d309ac8fb2033b972f26622cd4b7a722d7"
+    },
+    {
+      "file": "template/tests/fixtures/manifest-schema/invalid-course.yaml",
+      "size": 224,
+      "sha256": "534eaa7ef4da77a4c48c1832c8924b3e5878220d0fc993aeeff0b240c1015204"
+    },
+    {
+      "file": "template/tests/fixtures/manifest-schema/invalid-objective-map.json",
+      "size": 482,
+      "sha256": "7b0a61057104ba77400b8eb7f3e3514055bdaca8e9c875324021d53e12a62f6a"
+    },
+    {
+      "file": "template/tests/fixtures/manifest-schema/unmapped-objective-map.json",
+      "size": 276,
+      "sha256": "68b90ddb3b25274ab7ccc4b50f82f51735fc616c220d0ca3a12e4b4077cdf585"
+    },
+    {
+      "file": "template/tests/fixtures/manifest-schema/valid-catalog.yaml",
+      "size": 189,
+      "sha256": "4887f98e615265db999eca507bbafc810ad0a002c17d9258e14a0f955dbd4ccd"
+    },
+    {
+      "file": "template/tests/fixtures/manifest-schema/valid-course.yaml",
+      "size": 189,
+      "sha256": "72d18820c720b6a3351663cfa78016e0f448a14cdbae222c54c43a03b1398513"
+    },
+    {
+      "file": "template/tests/headless.js",
+      "size": 15542,
+      "sha256": "e0b50497b0ba29f2fb9e495e7b5e53731b36497e48b7f9577224393bb6e20f07"
+    },
+    {
+      "file": "template/tests/manifest-schema.js",
+      "size": 2892,
+      "sha256": "4bd65e359e2b847f5fcaefef44f250984edac0c4325afe10c457c6d24e9dfa91"
+    },
+    {
+      "file": "template/tests/package-lock.json",
+      "size": 29219,
+      "sha256": "65699b29a6cf6ad2d2c06dd4988042bd1d5116f37744cc660f757b888b1f0130"
+    },
+    {
+      "file": "template/tests/package.json",
+      "size": 195,
+      "sha256": "2c07e59ddf6e40f2579d65eeea34827e53800a53544ff4561e9f3dae87a2b6c1"
+    },
+    {
+      "file": "template/tests/unit.js",
+      "size": 3097,
+      "sha256": "d5b871ebf123ef81407f8e48d6ec2cce1906bc0e2780031345fa31fd0affc0d9"
+    },
+    {
+      "file": "template/tests/validate-course.js",
+      "size": 2391,
+      "sha256": "29eea7ad38d4ccf20a64d59e6c2e45603fda557010dbd7f778f60975a79b0698"
+    }
+  ]
+}

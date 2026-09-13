@@ -39,8 +39,11 @@ The command:
 
 1. checks the destination for conflicting framework paths;
 2. copies the runtime and required root contracts;
-3. installs jsdom from the packaged lockfile with `npm ci`;
+3. optionally installs jsdom from the packaged lockfile with `npm ci`;
 4. optionally runs the full 14-gate canonical pipeline.
+
+Dependency installation is opt-in. Add `--install` when the destination has
+not already installed the packaged test dependency.
 
 Add `--validate` to run the pipeline during initialization:
 
@@ -60,13 +63,25 @@ framework paths.
 
 ## Validate The Portable Skill
 
+The portable packaging command:
+
+```bash
+node skills/course-factory-portable/scripts/package.js
+```
+
+It rebuilds the embedded framework from canonical `template/` and root
+contracts, applies only the source-baseline catalog transform, and records a
+SHA-256 checksum manifest. Run `--check` to detect canonical drift and
+checksum changes without rebuilding.
+
 The portable validator checks:
 
 1. skill structure;
 2. required framework files;
 3. prohibited package content;
-4. the canonical source pipeline when this skill is located in its source repository;
-5. a full temporary initialization, dependency installation, and canonical gate.
+4. reproducible packaging, canonical drift, and checksums;
+5. the canonical source pipeline when this skill is located in its source repository;
+6. a full temporary empty-directory initialization and canonical gate.
 
 Run:
 

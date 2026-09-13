@@ -24,14 +24,18 @@ The published site serves the catalog from both `/` and `/courses.html`.
 ## Initialization
 
 ```bash
-node scripts/init.js --target /path/to/destination --validate
+node scripts/init.js --target /path/to/destination --no-install --validate
 ```
 
-The initializer installs the lockfile-pinned headless test dependency and runs
-the same unchanged 14-gate pipeline.
+The initializer copies the packaged framework and runs the same unchanged
+14-gate pipeline. Use `--install` to install the lockfile-pinned test
+dependency, or `--no-install` when jsdom is already available through a Node
+module path.
 
 ## Maintenance
 
-Re-run the portable validator before distributing or updating this skill. It
-must verify structure, completeness, prohibited content, the canonical source
-pipeline, and a temporary initialization.
+Rebuild only through `scripts/package.js`; do not manually edit the embedded
+framework mirror. Before distributing or updating the skill, run
+`scripts/package.js --check` and `scripts/validate.js`. They verify structure,
+completeness, prohibited content, canonical drift, checksums, the canonical
+source pipeline, and a temporary initialization.

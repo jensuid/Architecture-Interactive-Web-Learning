@@ -148,6 +148,7 @@ function copyRuntime(source, target, course) {
       }
     }
   }
+  if (source !== runtimeRoot) return;
   fs.mkdirSync(path.join(target, 'content'), { recursive: true });
   fs.mkdirSync(path.join(target, 'content', 'data'), { recursive: true });
   fs.copyFileSync(path.join(runtimeRoot, 'content', 'data', 'demo.json'), path.join(target, 'content', 'data', 'demo.json'));

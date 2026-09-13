@@ -210,7 +210,7 @@
       readBody.insertBefore(mounts, actions ? actions.nextSibling : readBody.firstChild);
     }
     for (let i = 0; i < store.length; i++) {
-      if (store[i].kind === 'raw') continue;
+    if (store[i].kind === 'raw') continue;
       const holder = document.createElement('div');
       holder.className = 'fence-placeholder';
       holder.dataset.i = String(i);

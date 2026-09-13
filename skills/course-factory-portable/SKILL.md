@@ -32,6 +32,16 @@ Do not use it for unrelated web applications.
    skill path. This command validates skill structure, packaging, the source
    canonical pipeline when available, and a temporary full initialization.
 
+   When maintaining the skill in its source repository, rebuild it only with:
+
+   ```bash
+   node skills/course-factory-portable/scripts/package.js
+   ```
+
+   Never manually edit `framework/`. The package command regenerates it from
+   canonical `template/` and root contracts; `package.js --check` detects
+   drift and checksum changes.
+
 2. Initialize a destination repository:
 
    ```bash
@@ -42,6 +52,7 @@ Do not use it for unrelated web applications.
    The initializer copies the runtime, compilers, validation gates, contracts,
    curriculum template, docs, CI, and release-support files into the destination.
    It refuses to overwrite framework paths unless `--force` is explicitly given.
+   Dependency installation is opt-in with `--install`.
 
 3. Collect the topic, audience, goal, desired depth, module count, and optional assets.
 4. If curriculum input is missing, create only `curriculum.json` using the

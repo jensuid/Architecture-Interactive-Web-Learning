@@ -8,7 +8,7 @@ const skillRoot = path.join(__dirname, '..');
 const frameworkRoot = path.join(skillRoot, 'framework');
 
 function parseArgs(argv) {
-  const options = { target: null, force: false, install: true, validate: false };
+  const options = { target: null, force: false, install: false, validate: false };
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
     if (value === '--help' || value === '-h') {
@@ -21,6 +21,8 @@ function parseArgs(argv) {
       index += 1;
     } else if (value === '--force') {
       options.force = true;
+    } else if (value === '--install') {
+      options.install = true;
     } else if (value === '--no-install') {
       options.install = false;
     } else if (value === '--validate') {
@@ -41,6 +43,7 @@ function help() {
 Options:
   --target <path>   Destination repository.
   --force           Replace existing packaged framework paths.
+  --install         Run npm ci in template/tests.
   --no-install      Skip npm ci in template/tests.
   --validate        Run the full canonical pipeline after initialization.
   --report <path>   Write a machine-readable initialization report.
@@ -65,6 +68,15 @@ function frameworkTargets(target) {
     'notes',
     'template',
   ].map((relativePath) => path.join(target, relativePath));
+}
+
+function copyReleaseNotes(target, force) {
+  fs.mkdirSync(path.join(target, 'notes'), { recursive: true });
+  copyContents(
+    path.join(frameworkRoot, 'notes', 'release-notes.md'),
+    path.join(target, 'notes', 'release-notes.md'),
+    force,
+  );
 }
 
 function copyContents(source, destination, force) {
@@ -133,8 +145,8 @@ function main() {
     copyContents(path.join(frameworkRoot, 'courses.yaml'), path.join(target, 'courses.yaml'), options.force);
     copyContents(path.join(frameworkRoot, '.github'), path.join(target, '.github'), options.force);
     copyContents(path.join(frameworkRoot, 'docs'), path.join(target, 'docs'), options.force);
-    copyContents(path.join(frameworkRoot, 'notes'), path.join(target, 'notes'), options.force);
     copyContents(path.join(frameworkRoot, 'template'), path.join(target, 'template'), options.force);
+    copyReleaseNotes(target, options.force);
 
     if (options.install) {
       const install = run('npm', ['ci'], path.join(target, 'template', 'tests'));
@@ -152,19 +164,24 @@ function main() {
     let pipelineStatus = options.validate ? 'failed' : 'skipped';
     let pipelineOutput = null;
     if (options.validate) {
-      const preparation = run(
+      const coursePreparation = run(
         process.execPath,
         [path.join(target, 'template', 'scripts', 'compile-course.js')],
         path.join(target, 'template'),
       );
+      const catalogPreparation = run(
+        process.execPath,
+        [path.join(target, 'template', 'scripts', 'compile-catalog.js')],
+        path.join(target, 'template'),
+      );
       steps.push({
         name: 'prepare-validation-state',
-        status: preparation.status === 0 ? 'passed' : 'failed',
-        command: preparation.command,
-        output: preparation.output.split(/\r?\n/).slice(-20),
+        status: coursePreparation.status === 0 && catalogPreparation.status === 0 ? 'passed' : 'failed',
+        command: [coursePreparation.command, catalogPreparation.command].join(' && '),
+        output: `${coursePreparation.output}\n${catalogPreparation.output}`.split(/\r?\n/).slice(-20),
       });
-      if (preparation.status !== 0) {
-        throw new Error(`Validation state preparation failed with exit code ${preparation.status}`);
+      if (coursePreparation.status !== 0 || catalogPreparation.status !== 0) {
+        throw new Error(`Validation state preparation failed with exit codes ${coursePreparation.status}/${catalogPreparation.status}`);
       }
       const pipeline = run(process.execPath, [validationPath], target);
       pipelineStatus = pipeline.status === 0 ? 'passed' : 'failed';
@@ -177,7 +194,7 @@ function main() {
         name: 'canonical-pipeline',
         status: pipelineStatus,
         command: options.validate ? 'template/scripts/agent-run.js' : null,
-      output: pipelineOutput || [],
+        output: pipelineOutput || [],
     });
   } catch (error) {
     steps.push({ name: 'initialize', status: 'failed', error: error.message });
@@ -198,7 +215,7 @@ function main() {
 
   const report = {
     schemaVersion: 1,
-    status: steps.every((step) => step.status === 'failed' ? false : true) ? 'passed' : 'failed',
+    status: steps.some((step) => step.status === 'failed') ? 'failed' : 'passed',
     target,
     steps,
     generatedBy: 'course-factory-portable/scripts/init.js',
@@ -208,10 +225,6 @@ function main() {
     fs.writeFileSync(path.resolve(process.cwd(), options.report), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
   }
   console.log(JSON.stringify(report, null, 2));
-}
-
-function redetectFrameworkRoot() {
-  return frameworkRoot;
 }
 
 main();

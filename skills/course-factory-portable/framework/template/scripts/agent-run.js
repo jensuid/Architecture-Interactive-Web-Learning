@@ -19,6 +19,18 @@ function runStep(name, command) {
 }
 
 function main() {
+  if (process.argv.includes('--check')) {
+    const reportPath = path.join(templateRoot, 'tests', 'generated', 'agent-run.json');
+    let status = 'failed';
+    try {
+      status = JSON.parse(fs.readFileSync(reportPath, 'utf8')).status;
+    } catch {
+      status = 'failed';
+    }
+    console.log(JSON.stringify({ schemaVersion: 1, status }, null, 2));
+    process.exitCode = status === 'success' ? 0 : 1;
+    return;
+  }
   const steps = [
     runStep('manifest-compiler-check', ['scripts/compile-course.js', '--check']),
     runStep('manifest-schema-fixtures', ['tests/manifest-schema.js']),

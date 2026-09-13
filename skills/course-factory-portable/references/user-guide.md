@@ -27,11 +27,15 @@ The skill deliberately does not package:
 - `dist/`;
 - `node_modules/`;
 - `graphify-out/`;
+- destination `courses/`;
+- operating-system metadata;
 - generated reports;
+- stale generated content;
 - repository history.
 
 Dependencies are represented by `template/tests/package.json` and
-`template/tests/package-lock.json`. Initialization installs them with `npm ci`.
+`template/tests/package-lock.json`. Use `init.js --install` to install them
+with `npm ci`.
 
 ## 2. Before You Begin
 
@@ -56,10 +60,12 @@ skills/course-factory-portable/
   SKILL.md
   README.md
   scripts/init.js
+  scripts/package.js
   scripts/validate.js
   references/
   templates/
   framework/
+    package-manifest.json
 ```
 
 When installed globally, replace `skills/course-factory-portable` with the
@@ -84,8 +90,10 @@ The validator checks:
 1. required skill structure;
 2. required framework files;
 3. prohibited package content;
-4. the source repository's canonical pipeline, when available;
-5. a complete temporary initialization and destination validation.
+4. packaging and SHA-256 checksums;
+5. canonical drift, when the source repository is available;
+6. the source repository's canonical pipeline, when available;
+7. a complete temporary empty-directory initialization and destination validation.
 
 To save a machine-readable report:
 
@@ -103,6 +111,15 @@ Optional controls:
 
 The command exits nonzero if any selected check fails. Fix the package or
 environment before using the skill to initialize a real destination.
+
+Maintainers regenerate the embedded framework only through:
+
+```bash
+node skills/course-factory-portable/scripts/package.js
+```
+
+Never manually edit `framework/`. Run `package.js --check` before committing
+the package to detect canonical drift, prohibited content, and checksum changes.
 
 ## 5. Initialize A New Destination
 
@@ -127,7 +144,8 @@ my-course-repo/
   .github/
 ```
 
-It also installs the lockfile-pinned headless test dependencies:
+It can also install the lockfile-pinned headless test dependency with
+`--install`:
 
 ```bash
 cd template/tests
@@ -141,6 +159,7 @@ For a complete first-run check:
 ```bash
 node skills/course-factory-portable/scripts/init.js \
   --target ../my-course-repo \
+  --install \
   --validate \
   --report initialization-report.json
 ```
@@ -149,7 +168,8 @@ This runs the unchanged 14-gate pipeline in the destination.
 
 ### 5.2 Skip Dependency Installation
 
-Use this only when dependencies are already installed:
+Use this only when jsdom is already resolvable in the destination, for example
+through an existing installation or `NODE_PATH`:
 
 ```bash
 node skills/course-factory-portable/scripts/init.js \
@@ -192,7 +212,7 @@ The initializer:
 
 - creates the destination if necessary;
 - refuses partial overwrites by default;
-- installs only the declared headless test dependency;
+- installs only the declared headless test dependency when `--install` is used;
 - runs the destination's own scripts, not the source repository's scripts;
 - keeps generated output in the destination;
 - never packages dependencies, `dist/`, or generated reports.
@@ -597,9 +617,11 @@ directory and rerun the portable validator.
 | Command | Purpose |
 | --- | --- |
 | `node scripts/init.js --target <path>` | Initialize a destination |
-| `node scripts/init.js --target <path> --validate` | Initialize and run all gates |
+| `node scripts/init.js --target <path> --install --validate` | Initialize, install, and run all gates |
 | `node scripts/init.js --target <path> --no-install` | Skip `npm ci` |
 | `node scripts/init.js --target <path> --force` | Replace packaged framework paths |
+| `node scripts/package.js` | Rebuild the embedded framework |
+| `node scripts/package.js --check` | Check drift, exclusions, and checksums |
 | `node scripts/validate.js` | Validate the portable skill |
 | `node template/scripts/course-factory.js curriculum.json` | Generate starter course |
 | `node template/scripts/agent-run.js` | Run the unchanged 14 gates |

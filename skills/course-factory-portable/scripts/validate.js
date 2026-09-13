@@ -7,6 +7,7 @@ const { spawnSync } = require('child_process');
 
 const skillRoot = path.join(__dirname, '..');
 const sourceRoot = path.join(skillRoot, '..', '..');
+const frameworkRoot = path.join(skillRoot, 'framework');
 
 function parseArgs(argv) {
   const options = {
@@ -52,7 +53,9 @@ function validateSkillStructure(checks) {
     'references/mockup-topic-walkthrough.md',
     'templates/curriculum.json',
     'scripts/init.js',
+    'scripts/package.js',
     'scripts/validate.js',
+    'framework/package-manifest.json',
     'framework/AGENT.md',
     'framework/course.yaml',
     'framework/courses.yaml',
@@ -102,6 +105,24 @@ function validateSkillStructure(checks) {
   return missing.length === 0;
 }
 
+function validatePackaging(checks) {
+  const packagePath = path.join(skillRoot, 'scripts', 'package.js');
+  const result = run(process.execPath, [packagePath, '--check'], sourceRoot);
+  let report = null;
+  try {
+    report = JSON.parse(result.output);
+  } catch {
+    report = null;
+  }
+  const passed = result.status === 0 && report && report.status === 'passed';
+  addCheck(checks, 'portable-packaging', passed, {
+    status: report && report.status,
+    exitCode: result.status,
+    output: result.output.split(/\r?\n/).slice(-20),
+  });
+  return passed;
+}
+
 function validateCompleteness(checks) {
   const required = [
     'framework/template/scripts/agent-run.js',
@@ -145,7 +166,14 @@ function validateCompleteness(checks) {
 
 function validateExclusions(checks) {
   const prohibitedFiles = [];
-  const prohibitedNames = new Set(['node_modules', 'dist', 'graphify-out', '.git']);
+  const prohibitedNames = new Set([
+    '.DS_Store',
+    '.git',
+    'courses',
+    'dist',
+    'graphify-out',
+    'node_modules',
+  ]);
   function walk(directory) {
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
       if (prohibitedNames.has(entry.name)) {
@@ -178,13 +206,39 @@ function run(command, args, cwd) {
   };
 }
 
+function runWithEnvironment(environment, command, args, cwd) {
+  const result = spawnSync(command, args, { cwd, encoding: 'utf8', env: environment });
+  return {
+    status: result.status,
+    command: [command, ...args].join(' '),
+    output: `${result.stdout || ''}${result.stderr || ''}`.trim(),
+  };
+}
+
 function validateCanonicalPipeline(checks) {
   const pipelinePath = path.join(sourceRoot, 'template', 'scripts', 'agent-run.js');
   if (!fs.existsSync(pipelinePath)) {
     addCheck(checks, 'canonical-source-pipeline', false, { missing: path.relative(process.cwd(), pipelinePath) });
     return false;
   }
-  const result = run(process.execPath, [pipelinePath], sourceRoot);
+  const mirrorSnapshot = new Map();
+  for (const filePath of collectFrameworkFiles()) {
+    mirrorSnapshot.set(filePath, fs.readFileSync(filePath));
+  }
+  let result;
+  try {
+    result = run(process.execPath, [pipelinePath, '--check'], sourceRoot);
+  } finally {
+    if (mirrorSnapshot.size === 0) {
+      fs.rmSync(frameworkRoot, { recursive: true, force: true });
+    } else {
+      fs.rmSync(frameworkRoot, { recursive: true, force: true });
+      for (const [filePath, contents] of mirrorSnapshot) {
+        fs.mkdirSync(path.dirname(filePath), { recursive: true });
+        fs.writeFileSync(filePath, contents);
+      }
+    }
+  }
   const reportPath = path.join(sourceRoot, 'template', 'tests', 'generated', 'agent-run.json');
   let reportStatus = null;
   try {
@@ -202,15 +256,37 @@ function validateCanonicalPipeline(checks) {
   return passed;
 }
 
+function collectFrameworkFiles() {
+  const files = [];
+  if (!fs.existsSync(frameworkRoot)) return files;
+  function walk(directory) {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const entryPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) walk(entryPath);
+      else files.push(entryPath);
+    }
+  }
+  walk(frameworkRoot);
+  return files;
+}
+
 function validateTemporaryInitialization(checks) {
   const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'course-factory-portable-'));
   const reportPath = path.join(temporaryRoot, 'initialization-report.json');
   const initPath = path.join(skillRoot, 'scripts', 'init.js');
-  const result = run(process.execPath, [
+  const testDependencyRoot = path.join(sourceRoot, 'template', 'tests', 'node_modules');
+  const environment = { ...process.env };
+  if (fs.existsSync(testDependencyRoot)) {
+    environment.NODE_PATH = [testDependencyRoot, process.env.NODE_PATH]
+      .filter(Boolean)
+      .join(path.delimiter);
+  }
+  const result = runWithEnvironment(environment, process.execPath, [
     initPath,
     '--target',
     temporaryRoot,
     '--validate',
+    '--no-install',
     '--report',
     reportPath,
   ], sourceRoot);
@@ -268,10 +344,13 @@ Options:
   const checks = [];
   const structure = validateSkillStructure(checks);
   const completeness = validateCompleteness(checks);
-  const exclusions = validateExclusions(checks);
   const canonical = options.skipCanonical || validateCanonicalPipeline(checks);
   const initialization = options.skipInitialization || validateTemporaryInitialization(checks);
-  const status = structure && completeness && exclusions && canonical && initialization ? 'passed' : 'failed';
+  const packaging = validatePackaging(checks);
+  const exclusions = validateExclusions(checks);
+  const status = structure && completeness && exclusions && packaging && canonical && initialization
+    ? 'passed'
+    : 'failed';
   const report = {
     schemaVersion: 1,
     status,
