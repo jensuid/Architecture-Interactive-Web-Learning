@@ -42,6 +42,11 @@
       "sha256": "55ad37993e2d948708104ef920f6fdf520af51c5ba11fd83196e0cd4c391645e"
     },
     {
+      "file": "docs/DOCUMENTATION.md",
+      "size": 3937,
+      "sha256": "a336f662b017d48ac2c9cac145986f3cb9c27a7bac6ab2b8295e86fef120556c"
+    },
+    {
       "file": "docs/topic-course-workflow.md",
       "size": 8918,
       "sha256": "ed2c8de7b4afc3abdbb609660a678a9fb1df86771e2e0449f09ab40fd40b6a13"
