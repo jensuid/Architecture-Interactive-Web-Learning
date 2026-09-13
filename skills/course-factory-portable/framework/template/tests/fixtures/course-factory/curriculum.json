@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "course": {
+    "id": "factory-sample-course",
+    "name": "Factory Sample Course",
+    "version": "v1.0"
+  },
+  "modules": [
+    {
+      "id": "M1",
+      "short": "Generated module",
+      "objectives": [
+        { "id": "obj-factory-manifest", "text": "Explain the generated course structure." }
+      ],
+      "checkpoint": {
+        "id": "m1-generated",
+        "q": "What is the authoritative generated course structure?",
+        "options": [
+          "The player source",
+          "The generated course manifest",
+          "The browser URL"
+        ],
+        "answer": 1,
+        "explanation": "The generated manifest defines the course and its objective map."
+      }
+    }
+  ],
+  "finalQuizHost": null
+}

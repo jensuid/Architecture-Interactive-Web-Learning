@@ -1,0 +1,44 @@
+schemaVersion: 1
+course:
+  id: learning-platform-template
+  name: Your Course Name
+  version: v2.0
+modules:
+  - id: M1
+    short: Getting started
+    objectives:
+      - obj-m1-manifest: Register modules through the course manifest.
+      - obj-m1-first-attempt: Explain first-attempt checkpoint scoring.
+  - id: M2
+    short: Content blocks
+    objectives:
+      - obj-m2-anno: Pair annotated code with the preceding code block.
+      - obj-m2-architecture: Describe the layered course architecture.
+  - id: M3
+    short: Media & math
+    objectives:
+      - obj-m3-media: Reference media with app-relative paths.
+      - obj-m3-math: Explain extract-before-parse math safety.
+  - id: final-assessment
+    short: Final
+finalQuizHost: M3
+presentation:
+  theme: default
+  layout: sidebar-left
+  customTheme: null
+  componentVariants: {}
+components:
+  builtIn:
+    - diagram
+    - objectives
+engine:
+  required: true
+  entry: js/engine.js
+  capabilities:
+    - deterministic-randomness
+    - rolling-statistics
+    - random-walk
+    - spaced-review
+datasets:
+    - id: demo
+      file: content/data/demo.json

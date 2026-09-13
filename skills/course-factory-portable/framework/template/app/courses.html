@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Courses</title>
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./courses.html">📚 Course catalog</a>
+</header>
+<main id="course-catalog" class="doc">
+  <p class="kicker">Course catalog</p>
+  <h1>Choose a course</h1>
+  <p class="subtitle">Each course keeps progress, flashcards, and theme selection isolated.</p>
+  <div class="card-grid" id="course-cards">
+    <section class="loading">Loading…</section>
+  </div>
+</main>
+<script>
+(function () {
+  fetch('courses.json').then(function (response) {
+    if (!response.ok) throw new Error('Unable to load courses.json');
+    return response.json();
+  }).then(function (catalog) {
+    var root = document.getElementById('course-cards');
+    root.innerHTML = catalog.courses.map(function (course) {
+      return '<a class="card" href="' + course.route + '">' +
+        '<span class="n">' + course.id + '</span>' +
+        '<div class="t">' + course.name + '</div>' +
+        '<div class="d">Version ' + course.version + '</div>' +
+        '<div class="q">Open course</div></a>';
+    }).join('');
+  }).catch(function (error) {
+    document.getElementById('course-cards').innerHTML =
+      '<section class="loading">Failed to load courses: ' + error.message + '</section>';
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+name: Interactive Course CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate static course framework
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: template/tests/package-lock.json
+
+      - name: Install headless test dependencies
+        working-directory: template/tests
+        run: npm ci
+
+      - name: Run full framework validation
+        run: node template/scripts/agent-run.js
+
+      - name: Archive validation artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-artifacts
+          path: |
+            template/tests/generated
+            !template/tests/generated/**/*.tmp
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Archive static distribution
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-distribution
+          path: dist
+          if-no-files-found: error
+          retention-days: 7

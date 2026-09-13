@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "generatedBy": "template/scripts/release-check.js",
+  "fileCount": 93,
+  "totalBytes": 1931446,
+  "steps": [
+    {
+      "name": "manifest-schema",
+      "status": "passed",
+      "command": "tests/manifest-schema.js"
+    },
+    {
+      "name": "course-factory",
+      "status": "passed",
+      "command": "tests/course-factory.js"
+    },
+    {
+      "name": "course-validation",
+      "status": "passed",
+      "command": "tests/validate-course.js"
+    },
+    {
+      "name": "unit-tests",
+      "status": "passed",
+      "command": "tests/unit.js"
+    },
+    {
+      "name": "headless-course",
+      "status": "passed",
+      "command": "tests/headless.js"
+    },
+    {
+      "name": "production-readiness",
+      "status": "passed",
+      "command": "scripts/production-check.js"
+    },
+    {
+      "name": "multi-course-validation",
+      "status": "passed",
+      "command": "scripts/validate-courses.js"
+    },
+    {
+      "name": "deterministic-publish",
+      "status": "passed",
+      "command": "scripts/publish.js"
+    },
+    {
+      "name": "publish-verification",
+      "status": "passed",
+      "command": "scripts/verify-publish.js"
+    }
+  ],
+  "checks": [
+    {
+      "name": "published root home page exists",
+      "status": "passed"
+    },
+    {
+      "name": "release gate runs all core suites",
+      "status": "passed"
+    },
+    {
+      "name": "total static payload budget",
+      "status": "passed",
+      "info": "1931446 bytes"
+    },
+    {
+      "name": "per-file size budget",
+      "status": "passed",
+      "info": ""
+    },
+    {
+      "name": "source assets are non-empty",
+      "status": "passed"
+    },
+    {
+      "name": "build manifest is checksum-verified",
+      "status": "passed"
+    },
+    {
+      "name": "all pages have responsive viewport",
+      "status": "passed"
+    },
+    {
+      "name": "responsive breakpoints are defined",
+      "status": "passed"
+    },
+    {
+      "name": "runtime remains network-hermetic",
+      "status": "passed"
+    },
+    {
+      "name": "accessibility audit passed",
+      "status": "passed"
+    },
+    {
+      "name": "catalog routes are isolated and relative",
+      "status": "passed"
+    },
+    {
+      "name": "course routes do not contain duplicate catalogs",
+      "status": "passed"
+    },
+    {
+      "name": "versioned release notes exist",
+      "status": "passed"
+    },
+    {
+      "name": "hosted CI workflow exists",
+      "status": "passed"
+    },
+    {
+      "name": "GitHub Pages deployment workflow exists",
+      "status": "passed"
+    },
+    {
+      "name": "deployment guide exists",
+      "status": "passed"
+    }
+  ],
+  "releaseProvenance": {
+    "releaseTime": "2026-09-13T13:59:14.937Z",
+    "buildManifestSha256": "9b72b82f880273ee611ac95ecd8c5b90b0ca330e181b222d0551cc5725e8ff76",
+    "runtimeCompatibility": "schemaVersion 1"
+  }
+}

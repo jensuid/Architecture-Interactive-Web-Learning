@@ -1,0 +1,7 @@
+schemaVersion: 1
+courses:
+  - id: learning-platform-template
+    name: Your Course Name
+    version: v2.0
+    manifest: template/app/course-manifest.json
+    route: template/app/index.html

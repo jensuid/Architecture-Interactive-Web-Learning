@@ -1,0 +1,21 @@
+/* Presentation package: token overrides only. */
+html[data-theme="architecture-studio"] {
+  --bg: #0b1120;
+  --surface: #111827;
+  --panel: #172033;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-strong: #7dd3fc;
+  --accent-soft: rgba(56, 189, 248, .14);
+  --border: #24344d;
+  --border-soft: #1d2b3d;
+  --ok: #34d399;
+  --bad: #f87171;
+  --faint: rgba(255, 255, 255, .05);
+  --radius: 10px;
+  --radius-lg: 14px;
+  --code-bg: #0d1424;
+  --chart-grid: rgba(255, 255, 255, .07);
+  --chart-text: #94a3b8;
+}

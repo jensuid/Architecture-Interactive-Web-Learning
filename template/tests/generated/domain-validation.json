@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "required": true,
+  "entry": "js/engine.js",
+  "capabilities": [
+    "deterministic-randomness",
+    "rolling-statistics",
+    "random-walk",
+    "spaced-review"
+  ],
+  "datasets": [
+    {
+      "id": "demo",
+      "file": "content/data/demo.json"
+    }
+  ],
+  "checksRun": [
+    "engine-asset",
+    "pure-engine",
+    "dataset-asset",
+    "dataset-schema"
+  ],
+  "errors": [],
+  "warnings": []
+}

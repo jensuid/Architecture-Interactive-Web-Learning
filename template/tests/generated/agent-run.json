@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "status": "success",
+  "generatedBy": "template/scripts/agent-run.js",
+  "steps": [
+    {
+      "name": "manifest-compiler-check",
+      "command": "scripts/compile-course.js --check",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "course manifest compiler: IN SYNC"
+      ]
+    },
+    {
+      "name": "manifest-schema-fixtures",
+      "command": "tests/manifest-schema.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "✔ valid course fixture parses",
+        "  ✔ valid course fixture validates",
+        "  ✔ invalid course ID is rejected",
+        "  ✔ duplicate objective IDs are rejected",
+        "  ✔ unknown final quiz host is rejected",
+        "  ✔ unknown objective reference is rejected",
+        "  ✔ unmapped objective is rejected",
+        "  ✔ valid catalog fixture validates",
+        "  ✔ duplicate catalog IDs are rejected",
+        "  ✔ duplicate catalog routes are rejected",
+        "",
+        "manifest schema: 10 passed, 0 failed"
+      ]
+    },
+    {
+      "name": "course-factory",
+      "command": "tests/course-factory.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "✔ factory report succeeds",
+        "  ✔ factory report has deterministic input checksum",
+        "  ✔ generated course exists",
+        "  ✔ generated manifest exists",
+        "  ✔ generated module exists",
+        "  ✔ generated module has flow-section separator",
+        "  ✔ catalog contains generated course",
+        "  ✔ generated course does not contain a runtime catalog",
+        "  ✔ generated theme storage is course-scoped",
+        "  ✔ generated course title is course-specific",
+        "  ✔ generated teacher title is course-specific",
+        "  ✔ generated teacher runtime uses the course name",
+        "  ✔ repeat generation is idempotent",
+        "",
+        "course factory: 13 passed, 0 failed"
+      ]
+    },
+    {
+      "name": "catalog-compiler",
+      "command": "scripts/compile-catalog.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "course catalog compiler: wrote template/app/courses.json"
+      ]
+    },
+    {
+      "name": "course-validation",
+      "command": "tests/validate-course.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "course manifest compiler: IN SYNC",
+        "course manifest validation: PASSED (4 modules)"
+      ]
+    },
+    {
+      "name": "unit-tests",
+      "command": "tests/unit.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "✔ seedRng deterministic for same seed",
+        "  ✔ seedRng in [0,1)",
+        "  ✔ different seeds diverge",
+        "  ✔ walk returns n points",
+        "  ✔ walk starts at start",
+        "  ✔ walk deterministic",
+        "  ✔ rolling mean window fills after w-1",
+        "  ✔ rolling mean value",
+        "  ✔ rolling std of constant is 0",
+        "  ✔ course compiler is deterministic",
+        "  ✔ objective contract is complete",
+        "",
+        "unit: 11 passed, 0 failed"
+      ]
+    },
+    {
+      "name": "headless-course",
+      "command": "tests/headless.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "  ✔ M3 renders 3 media figures",
+        "  ✔ M3 video has controls",
+        "  ✔ youtube facade before click (no iframe)",
+        "  ✔ facade click swaps embed",
+        "  ✔ KaTeX renders (display + inline)",
+        "  ✔ no leftover %%RAW%% placeholders",
+        "  ✔ badge flips to ✓ live after quiz pass",
+        "  ✔ progress header updates live",
+        "  ✔ M1 has next nav only",
+        "  ✔ diagnostic records objective baseline",
+        "  ✔ diagnostic does not record module quiz",
+        "  ✔ certificate UNLOCKS at full pass",
+        "  ✔ all 4 badges done",
+        "  ✔ progress reaches 100%",
+        "  ✔ final step lit via FINAL_QUIZ_HOST",
+        "  ✔ all objectives mastered",
+        "  ✔ objective panel clears recommendations after mastery",
+        "  ✔ accessibility audit passes",
+        "",
+        "headless: 64 passed, 0 failed"
+      ]
+    },
+    {
+      "name": "production-check",
+      "command": "scripts/production-check.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "      \"status\": \"passed\",",
+        "      \"info\": null",
+        "    },",
+        "    {",
+        "      \"name\": \"all module content exists\",",
+        "      \"status\": \"passed\",",
+        "      \"info\": null",
+        "    },",
+        "    {",
+        "      \"name\": \"all components are non-empty\",",
+        "      \"status\": \"passed\",",
+        "      \"info\": null",
+        "    },",
+        "    {",
+        "      \"name\": \"no browser runtime network calls\",",
+        "      \"status\": \"passed\",",
+        "      \"info\": null",
+        "    }",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "name": "multi-course-validation",
+      "command": "scripts/validate-courses.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "{",
+        "  \"schemaVersion\": 1,",
+        "  \"status\": \"passed\",",
+        "  \"courseCount\": 2,",
+        "  \"checks\": []",
+        "}"
+      ]
+    },
+    {
+      "name": "catalog-determinism",
+      "command": "scripts/compile-catalog.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "course catalog compiler: wrote template/app/courses.json"
+      ]
+    },
+    {
+      "name": "publish",
+      "command": "scripts/publish.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "published deterministic multi-course static site: ../dist",
+        "courses: 2",
+        "files: 91"
+      ]
+    },
+    {
+      "name": "publish-verification",
+      "command": "scripts/verify-publish.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "{",
+        "  \"schemaVersion\": 1,",
+        "  \"status\": \"passed\",",
+        "  \"fileCount\": 92,",
+        "  \"errors\": []",
+        "}"
+      ]
+    },
+    {
+      "name": "accessibility-report",
+      "command": "tests/generated/accessibility-report.json",
+      "status": "passed",
+      "exitCode": 0,
+      "output": []
+    },
+    {
+      "name": "release-readiness",
+      "command": "scripts/release-check.js",
+      "status": "passed",
+      "exitCode": 0,
+      "output": [
+        "    },",
+        "    {",
+        "      \"name\": \"hosted CI workflow exists\",",
+        "      \"status\": \"passed\"",
+        "    },",
+        "    {",
+        "      \"name\": \"GitHub Pages deployment workflow exists\",",
+        "      \"status\": \"passed\"",
+        "    },",
+        "    {",
+        "      \"name\": \"deployment guide exists\",",
+        "      \"status\": \"passed\"",
+        "    }",
+        "  ],",
+        "  \"releaseProvenance\": {",
+        "    \"releaseTime\": \"2026-09-13T13:59:14.937Z\",",
+        "    \"buildManifestSha256\": \"9b72b82f880273ee611ac95ecd8c5b90b0ca330e181b222d0551cc5725e8ff76\",",
+        "    \"runtimeCompatibility\": \"schemaVersion 1\"",
+        "  }",
+        "}"
+      ]
+    }
+  ]
+}

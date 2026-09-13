@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factory Sample Course</title>
+<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="assets/themes/architecture-studio.css?v=1">
+<link rel="stylesheet" href="js/vendor/katex.min.css?v=1">
+<script>
+// Apply saved theme before first paint to avoid flash
+(function(){try{var t=localStorage.getItem('factory-sample-course-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menu-btn" aria-label="Open module navigation" aria-expanded="false">☰</button>
+  <a class="brand" href="#/home">📚 Factory Sample Course</a>
+  <nav class="topnav">
+    <a href="#/home" data-nav="home">Home</a>
+    <a href="#/module/M1" data-nav="M1">Modules</a>
+    <a href="#/module/final-assessment" data-nav="final-assessment">Final</a>
+  </nav>
+  <div class="top-actions">
+    <select id="theme-select" aria-label="Theme">
+      <option value="default">Midnight</option>
+      <option value="slate">Daylight</option>
+      <option value="warm">Sepia</option>
+      <option value="nord">Nord</option>
+      <option value="blossom">Blossom</option>
+    </select>
+  </div>
+</header>
+
+<div class="layout sidebar-left">
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  <aside class="stepper" id="stepper" aria-label="Course modules">
+    <!-- module sidebar injected by shell.js -->
+  </aside>
+  <main id="app">
+    <section class="loading">Loading…</section>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>Interactive course — self-paced, runs entirely in your browser.</span>
+</footer>
+
+<script src="js/vendor/marked.min.js?v=1"></script>
+<script src="js/vendor/highlight.min.js?v=1"></script>
+<script src="js/vendor/chart.umd.js?v=1"></script>
+<script src="js/vendor/katex.min.js?v=1"></script>
+<script src="js/engine.js?v=1"></script>
+<script src="js/deck.js?v=1"></script>
+<script src="js/shell.js?v=1"></script>
+<script src="js/renderer.js?v=1"></script>
+<script src="js/components/quiz.js?v=1"></script>
+<script src="js/components/chartlab.js?v=1"></script>
+<script src="js/components/flashcard.js?v=1"></script>
+<script src="js/components/reviewpack.js?v=1"></script>
+<script src="js/components/progresskit.js?v=1"></script>
+<script src="js/components/certificate.js?v=1"></script>
+	<script src="js/components/diagram.js?v=1"></script>
+	<script src="js/components/objectives.js?v=1"></script>
+	<script src="js/main.js?v=1"></script>
+</body>
+</html>

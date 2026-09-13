@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Progress Viewer — Your Course Name</title>
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#teacher-viewer">🧑‍🏫 Your Course Name — Teacher Viewer</a>
+</header>
+<main class="doc teacher-doc">
+  <p class="kicker">Teacher kit</p>
+  <h1>Progress Viewer</h1>
+  <p class="subtitle">Paste one progress code per line. Everything is decoded locally in your browser.</p>
+
+  <form id="teacher-form">
+    <label class="teacher-label" for="progress-codes">Submitted progress codes</label>
+    <textarea id="progress-codes" rows="8" placeholder="MDA1....&#10;MDA1...."></textarea>
+    <button class="btn parse" type="button">Parse submissions</button>
+  </form>
+
+  <section id="teacher-results" aria-live="polite">
+    <p class="teacher-summary">No submissions parsed yet.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <span>Static teacher tool — no accounts, backend, or network calls.</span>
+</footer>
+<script src="js/teacher.js?v=1"></script>
+</body>
+</html>

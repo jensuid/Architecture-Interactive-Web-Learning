@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "course": { "id": "fixture-course", "name": "Fixture Course", "version": "v1" },
+  "modules": [
+    { "id": "M1", "short": "First", "objectives": [{ "id": "obj-one", "text": "First objective" }] }
+  ],
+  "finalQuizHost": null,
+  "objectiveMap": []
+}

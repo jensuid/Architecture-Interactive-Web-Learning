@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "course": {
+    "id": "factory-sample-course",
+    "name": "Factory Sample Course",
+    "version": "v1.0"
+  },
+  "modules": [
+    {
+      "id": "M1",
+      "short": "Generated module",
+      "objectives": [
+        {
+          "id": "obj-factory-manifest",
+          "text": "Explain the generated course structure."
+        }
+      ]
+    }
+  ],
+  "finalQuizHost": null,
+  "objectiveMap": [
+    {
+      "objectiveId": "obj-factory-manifest",
+      "moduleId": "M1",
+      "checkpointId": "m1-generated",
+      "diagnostic": false
+    }
+  ],
+  "presentation": {
+    "theme": "default",
+    "layout": "sidebar-left",
+    "customTheme": null,
+    "componentVariants": {}
+  },
+  "components": {
+    "builtIn": [
+      "diagram",
+      "objectives"
+    ]
+  },
+  "engine": {
+    "required": true,
+    "entry": "js/engine.js",
+    "capabilities": [
+      "deterministic-randomness",
+      "rolling-statistics",
+      "random-walk",
+      "spaced-review"
+    ]
+  },
+  "datasets": [
+    {
+      "id": "demo",
+      "file": "content/data/demo.json"
+    }
+  ]
+}

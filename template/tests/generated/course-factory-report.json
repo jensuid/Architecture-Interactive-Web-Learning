@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "status": "success",
+  "courseId": "factory-sample-course",
+  "outputRoot": "courses/factory-sample-course",
+  "files": [
+    "courses/factory-sample-course/course-manifest.json",
+    "courses/factory-sample-course/index.html",
+    "courses/factory-sample-course/content/M1.md",
+    "courses.yaml"
+  ],
+  "validation": {
+    "input": [],
+    "manifest": []
+  },
+  "warnings": [],
+  "generatedBy": "template/scripts/course-factory.js",
+  "inputSha256": "ecc022734680da48dd73d52ea9befca99b9a75db1b6672ec93bb997bb92fbba6"
+}

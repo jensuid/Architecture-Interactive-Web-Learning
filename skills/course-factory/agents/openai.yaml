@@ -1,0 +1,7 @@
+interface:
+  display_name: "Course Factory"
+  short_description: "Build and validate static courses"
+  brand_color: "#2563EB"
+  default_prompt: "Use $course-factory to turn my topic and curriculum into a validated static course."
+policy:
+  allow_implicit_invocation: true

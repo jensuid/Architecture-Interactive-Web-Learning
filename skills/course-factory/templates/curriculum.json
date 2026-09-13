@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "course": {
+    "id": "example-course",
+    "name": "Example Course",
+    "version": "v1.0"
+  },
+  "modules": [
+    {
+      "id": "M1",
+      "short": "Example module",
+      "objectives": [
+        {
+          "id": "obj-example-overview",
+          "text": "Explain the core concept of the example module."
+        }
+      ],
+      "checkpoint": {
+        "id": "m1-example-checkpoint",
+        "q": "Which artifact is the authoritative generated course structure?",
+        "options": [
+          "The player source",
+          "The generated course manifest",
+          "The browser URL"
+        ],
+        "answer": 1,
+        "explanation": "The generated manifest defines course structure and its objective map."
+      }
+    }
+  ],
+  "finalQuizHost": null
+}

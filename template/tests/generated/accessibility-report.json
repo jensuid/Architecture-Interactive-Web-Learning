@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checks": [
+    {
+      "name": "single page h1",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "has main landmark",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "has navigation landmark",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "all module links have accessible text",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "interactive controls have labels",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "non-youtube media have captions",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "certificate completion state is announced",
+      "status": "passed",
+      "info": null
+    }
+  ]
+}

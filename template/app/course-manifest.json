@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "course": {
+    "id": "learning-platform-template",
+    "name": "Your Course Name",
+    "version": "v2.0"
+  },
+  "modules": [
+    {
+      "id": "M1",
+      "short": "Getting started",
+      "objectives": [
+        {
+          "id": "obj-m1-manifest",
+          "text": "Register modules through the course manifest."
+        },
+        {
+          "id": "obj-m1-first-attempt",
+          "text": "Explain first-attempt checkpoint scoring."
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "short": "Content blocks",
+      "objectives": [
+        {
+          "id": "obj-m2-anno",
+          "text": "Pair annotated code with the preceding code block."
+        },
+        {
+          "id": "obj-m2-architecture",
+          "text": "Describe the layered course architecture."
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "short": "Media & math",
+      "objectives": [
+        {
+          "id": "obj-m3-media",
+          "text": "Reference media with app-relative paths."
+        },
+        {
+          "id": "obj-m3-math",
+          "text": "Explain extract-before-parse math safety."
+        }
+      ]
+    },
+    {
+      "id": "final-assessment",
+      "short": "Final"
+    }
+  ],
+  "finalQuizHost": "M3",
+  "presentation": {
+    "theme": "default",
+    "layout": "sidebar-left",
+    "customTheme": null,
+    "componentVariants": {}
+  },
+  "components": {
+    "builtIn": [
+      "diagram",
+      "objectives"
+    ]
+  },
+  "engine": {
+    "required": true,
+    "entry": "js/engine.js",
+    "capabilities": [
+      "deterministic-randomness",
+      "rolling-statistics",
+      "random-walk",
+      "spaced-review"
+    ]
+  },
+  "datasets": [
+    {
+      "id": "demo",
+      "file": "content/data/demo.json"
+    }
+  ],
+  "objectiveMap": [
+    {
+      "objectiveId": "obj-m1-manifest",
+      "moduleId": "M1",
+      "checkpointId": "m1-1",
+      "diagnostic": false
+    },
+    {
+      "objectiveId": "obj-m1-first-attempt",
+      "moduleId": "M1",
+      "checkpointId": "m1-2",
+      "diagnostic": false
+    },
+    {
+      "objectiveId": "obj-m2-architecture",
+      "moduleId": "M2",
+      "checkpointId": "m2-diagnostic",
+      "diagnostic": true
+    },
+    {
+      "objectiveId": "obj-m2-anno",
+      "moduleId": "M2",
+      "checkpointId": "m2-1",
+      "diagnostic": false
+    },
+    {
+      "objectiveId": "obj-m2-architecture",
+      "moduleId": "M2",
+      "checkpointId": "m2-2",
+      "diagnostic": false
+    },
+    {
+      "objectiveId": "obj-m3-media",
+      "moduleId": "M3",
+      "checkpointId": "final-1",
+      "diagnostic": false
+    },
+    {
+      "objectiveId": "obj-m3-math",
+      "moduleId": "M3",
+      "checkpointId": "final-2",
+      "diagnostic": false
+    }
+  ]
+}

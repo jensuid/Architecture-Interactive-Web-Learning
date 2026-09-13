@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Dependencies
+node_modules/
+template/tests/node_modules/
+
+# Local graph/cache data
+graphify-out/
+
+# Generated static distribution
+dist/
+
+# Runtime user state
+.env
+.env.*
+*.local

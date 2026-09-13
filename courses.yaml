@@ -1,0 +1,12 @@
+schemaVersion: 1
+courses:
+  - id: learning-platform-template
+    name: Your Course Name
+    version: v2.0
+    manifest: template/app/course-manifest.json
+    route: template/app/index.html
+  - id: factory-sample-course
+    name: Factory Sample Course
+    version: v1.0
+    manifest: courses/factory-sample-course/course-manifest.json
+    route: courses/factory-sample-course/index.html

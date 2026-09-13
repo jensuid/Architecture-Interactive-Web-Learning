@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "checks": [
+    {
+      "name": "manifest exists",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "manifest is versioned",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "runtime has index",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "runtime has course catalog",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "runtime has teacher tool",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "all module content exists",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "all components are non-empty",
+      "status": "passed",
+      "info": null
+    },
+    {
+      "name": "no browser runtime network calls",
+      "status": "passed",
+      "info": null
+    }
+  ]
+}

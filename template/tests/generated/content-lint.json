@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "checksRun": [
+    "quiz-schema",
+    "component-registry",
+    "media-assets",
+    "module-routes",
+    "datasets"
+  ],
+  "errors": [],
+  "warnings": []
+}
