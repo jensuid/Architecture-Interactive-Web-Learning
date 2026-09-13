@@ -52,3 +52,9 @@ node template/scripts/verify-publish.js
 
 The installed local skill at
 `/Users/jensu/.codex/skills/course-factory` remains intentionally unchanged.
+
+## Static Hosting
+
+GitHub Pages is intentionally not enabled in this repository. The deployment
+workflow is disabled until hosting is ready; the CI workflow still validates and
+archives the generated distribution on every change.

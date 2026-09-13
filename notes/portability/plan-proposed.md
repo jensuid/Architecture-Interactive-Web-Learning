@@ -80,6 +80,13 @@ All requirements passed for `course-factory-portable-v1.1`, including:
 standalone-validation defect found during isolated testing was corrected in
 `v1.1`.
 
+## GitHub Pages Status
+
+The Pages deployment workflow is intentionally disabled because GitHub Pages is
+not enabled for the repository. The workflow definition remains available for
+future hosting. Enable GitHub Pages with "GitHub Actions" as the source, then
+re-enable the `Deploy Interactive Courses` workflow.
+
 Only after stable tagged installation decide whether to update
 `/Users/jensu/.codex/skills/course-factory`, replace it with the portable
 skill, or retain both temporarily.
