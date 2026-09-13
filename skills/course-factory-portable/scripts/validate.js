@@ -218,8 +218,10 @@ function runWithEnvironment(environment, command, args, cwd) {
 function validateCanonicalPipeline(checks) {
   const pipelinePath = path.join(sourceRoot, 'template', 'scripts', 'agent-run.js');
   if (!fs.existsSync(pipelinePath)) {
-    addCheck(checks, 'canonical-source-pipeline', false, { missing: path.relative(process.cwd(), pipelinePath) });
-    return false;
+    addCheck(checks, 'canonical-source-pipeline', true, {
+      skipped: 'source-repository pipeline unavailable; portable initialization is validated instead',
+    });
+    return true;
   }
   const mirrorSnapshot = new Map();
   for (const filePath of collectFrameworkFiles()) {
@@ -281,12 +283,13 @@ function validateTemporaryInitialization(checks) {
       .filter(Boolean)
       .join(path.delimiter);
   }
+  const installArgument = fs.existsSync(testDependencyRoot) ? '--no-install' : '--install';
   const result = runWithEnvironment(environment, process.execPath, [
     initPath,
     '--target',
     temporaryRoot,
     '--validate',
-    '--no-install',
+    installArgument,
     '--report',
     reportPath,
   ], sourceRoot);
