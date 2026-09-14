@@ -3,8 +3,8 @@
   "files": [
     {
       "file": ".github/workflows/ci.yml",
-      "size": 1797,
-      "sha256": "a825c7ff2aabab997e503ea9cda55d959530116d1213c60dc8b6b5c7d5eccdff"
+      "size": 1770,
+      "sha256": "86f957dd1fd0cb17dd786397cfdb16e98067cd65cbe1ba1e6ceb2ce1e3c349b0"
     },
     {
       "file": ".github/workflows/deploy-pages.yml",

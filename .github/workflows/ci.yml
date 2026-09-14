@@ -35,18 +35,18 @@ jobs:
         run: npm ci
 
       - name: Validate portable packaging and checksums
-        run: node skills/course-factory-portable/scripts/package.js --check
+        run: node skills/course-builder/scripts/package.js --check
 
       - name: Run full framework validation
         run: node template/scripts/agent-run.js
 
       - name: Validate portable skill initialization
         run: >
-          node skills/course-factory-portable/scripts/validate.js
+          node skills/course-builder/scripts/validate.js
           --report template/tests/generated/portable-validation.json
 
       - name: Recheck portable packaging and checksums
-        run: node skills/course-factory-portable/scripts/package.js --check
+        run: node skills/course-builder/scripts/package.js --check
 
       - name: Archive validation artifacts
         if: always()
