@@ -29,6 +29,11 @@ const requiredSkillFiles = [
   'framework/package-manifest.json',
 ];
 const prohibitedNames = new Set(['.DS_Store', '.git', 'dist', 'graphify-out', 'node_modules']);
+const releaseTagPattern = /^course-builder-v(\d+\.\d+(?:\.\d+)?(?:-(?:alpha|beta|rc)\.\d+)?)$/;
+const legacySourceRepositories = new Set([
+  sourceRepository,
+  'https://github.com/jensuid/course-factory.git',
+]);
 
 function parseArgs(argv) {
   const options = {
@@ -161,9 +166,9 @@ async function githubJson(pathname) {
 async function downloadAsset(asset, expectedSha256) {
   const response = await requestBuffer(asset.browser_download_url, {
     accept: 'application/octet-stream',
-    maxBytes: asset.size,
+    maxBytes: asset.size + 1024,
   });
-  if (response.bytes.length !== asset.size) {
+  if (response.bytes.length !== asset.size && response.url !== asset.browser_download_url) {
     throw new Error(`Asset size mismatch: expected ${asset.size}, received ${response.bytes.length}`);
   }
   const actual = sha256(response.bytes);
@@ -265,18 +270,18 @@ function readSkillVersion(root) {
   if (!fs.existsSync(metadataPath)) throw new Error(`Missing skill-version.json in ${root}`);
   const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
   if (metadata.schemaVersion !== 1) throw new Error('Unsupported skill-version schema');
-  if (metadata.sourceRepository !== sourceRepository) throw new Error('Unexpected skill source repository');
-  if (!/^\d+\.\d+(?:\.\d+)?$/.test(metadata.version)) throw new Error('Invalid skill version');
+  if (!legacySourceRepositories.has(metadata.sourceRepository)) throw new Error('Unexpected skill source repository');
+  if (!/^\d+\.\d+(?:\.\d+)?(?:-(?:alpha|beta|rc)\.\d+)?$/.test(metadata.version)) throw new Error('Invalid skill version');
   if (metadata.releaseTag !== `course-builder-v${metadata.version}`) throw new Error('Skill version and release tag do not match');
   return metadata;
 }
 
 function selectAssets(release) {
-  if (!release || release.draft || release.prerelease || typeof release.tag_name !== 'string') {
-    throw new Error('GitHub release is not a stable published release');
+  if (!release || release.draft || typeof release.tag_name !== 'string') {
+    throw new Error('GitHub release is not a published release');
   }
   const tag = release.tag_name;
-  const match = /^course-builder-v(\d+\.\d+(?:\.\d+)?)$/.exec(tag);
+  const match = releaseTagPattern.exec(tag);
   if (!match) throw new Error(`Unsupported course-builder release tag: ${tag}`);
   const assets = release.assets || [];
   const archive = assets.find((asset) => asset.name === `course-builder-v${match[1]}.tar.gz`);
@@ -530,7 +535,7 @@ async function main() {
     if (!options.ref && !options.latest) {
       if (!fs.existsSync(target)) throw new Error(`Installed skill target does not exist: ${target}`);
       installed = readSkillVersion(target);
-      const latest = await githubJson('/repos/jensuid/course-factory/releases/latest');
+      const latest = await githubJson(`/repos/${repositoryName}/releases/latest`);
       const selected = selectAssets(latest);
       report.status = 'passed';
       report.installed = installed;
@@ -542,8 +547,8 @@ async function main() {
     prepareTarget(target);
     installed = readSkillVersion(target);
     const release = options.latest
-      ? await githubJson('/repos/jensuid/course-factory/releases/latest')
-      : await githubJson(`/repos/jensuid/course-factory/releases/tags/${encodeURIComponent(options.ref)}`);
+      ? await githubJson(`/repos/${repositoryName}/releases/latest`)
+      : await githubJson(`/repos/${repositoryName}/releases/tags/${encodeURIComponent(options.ref)}`);
     const staged = await downloadAndStage(release, workspace);
     validateStagedSkill(staged.staging, workspace);
     const stagedHash = hashDirectory(staged.staging);
