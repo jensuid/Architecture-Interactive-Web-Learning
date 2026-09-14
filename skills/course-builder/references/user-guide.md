@@ -527,7 +527,61 @@ cd ../my-course-repo
 node template/scripts/agent-run.js
 ```
 
-### 13.1 Add Another Course
+### 13.1 Update The Installed Skill
+
+The installed skill records its version in `skill-version.json`. Check the
+installed and latest published release without downloading anything:
+
+```bash
+node skills/course-builder/scripts/update-skill.js
+```
+
+Test download, extraction, checksum verification, and portable validation while
+leaving the installation untouched:
+
+```bash
+node skills/course-builder/scripts/update-skill.js \
+  --ref course-builder-v2.1 --dry-run
+```
+
+Install an exact tagged release:
+
+```bash
+node skills/course-builder/scripts/update-skill.js \
+  --ref course-builder-v2.1
+```
+
+Install the latest stable release:
+
+```bash
+node skills/course-builder/scripts/update-skill.js \
+  --latest --confirm
+```
+
+Use `--target <path>` when the skill is installed somewhere other than
+`~/.codex/skills/course-builder`. Add `--report <path>` to save a machine-readable
+result.
+
+Only exact `course-builder-v<version>` GitHub release tags are accepted. Branches,
+commit SHAs, draft releases, prereleases, and ambiguous version text are rejected.
+The updater verifies:
+
+1. the archive asset digest returned by the GitHub API;
+2. the release's `.sha256` sidecar against that digest;
+3. the archive's actual SHA-256 after download;
+4. a single top-level skill directory;
+5. safe tar paths and regular files only;
+6. required skill files and prohibited-content exclusions;
+7. staged package and skill validation;
+8. final installed-skill validation.
+
+Before replacement, the updater creates a private backup and an `update-backup.json`
+record. It swaps the skill as a unit rather than copying files over the installation.
+If final validation fails, it restores the previous skill and reports the rollback.
+Keep the updater's temporary workspace intact when troubleshooting an intentional
+rollback failure.
+
+### 13.2 Add Another Course
 
 1. Create or update `curriculum.json`.
 2. Run the course factory.
@@ -623,6 +677,10 @@ directory and rerun the portable validator.
 | `node scripts/package.js` | Rebuild the embedded framework |
 | `node scripts/package.js --check` | Check drift, exclusions, and checksums |
 | `node scripts/validate.js` | Validate the portable skill |
+| `node scripts/update-skill.js` | Show installed and latest release information |
+| `node scripts/update-skill.js --ref <tag>` | Install an exact tagged release |
+| `node scripts/update-skill.js --ref <tag> --dry-run` | Verify a release without installing it |
+| `node scripts/update-skill.js --latest --confirm` | Install the latest stable release |
 | `node template/scripts/course-factory.js curriculum.json` | Generate starter course |
 | `node template/scripts/agent-run.js` | Run the unchanged 14 gates |
 | `node template/scripts/publish.js` | Generate `dist/` |

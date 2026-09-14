@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "checksRun": [
+    "slide-count",
     "quiz-schema",
     "component-registry",
     "media-assets",

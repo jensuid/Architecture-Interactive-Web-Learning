@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "version": "2.2.0-beta.1",
+  "releaseTag": "course-builder-v2.2.0-beta.1",
+  "channel": "beta",
+  "sourceRepository": "https://github.com/jensuid/course-builder.git"
+}

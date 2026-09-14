@@ -97,6 +97,42 @@ Optional arguments:
 
 The validator exits nonzero if any selected check fails.
 
+## Update The Installed Skill
+
+Check the installed and latest published versions without downloading:
+
+```bash
+node skills/course-builder/scripts/update-skill.js
+```
+
+Test an exact tagged release without modifying the installation:
+
+```bash
+node skills/course-builder/scripts/update-skill.js \
+  --ref course-builder-v2.1 --dry-run
+```
+
+Install an exact tagged release:
+
+```bash
+node skills/course-builder/scripts/update-skill.js \
+  --ref course-builder-v2.1
+```
+
+Install the latest stable release only after review:
+
+```bash
+node skills/course-builder/scripts/update-skill.js --latest --confirm
+```
+
+The updater accepts exact `course-builder-v<version>` release tags only. It downloads
+the GitHub release archive and checksum sidecar, verifies both against GitHub's
+recorded SHA-256 asset digests, extracts into a private staging directory, and runs
+the portable package and skill validators before replacement. Installation backs up
+the existing skill, swaps it as a unit, runs final validation, and automatically
+restores the previous skill if final validation fails. Use `--target <path>` to
+select an installation and `--report <path>` for a machine-readable result.
+
 Read `references/user-guide.md` for a complete installation, authoring,
 validation, publishing, maintenance, and troubleshooting walkthrough.
 

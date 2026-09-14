@@ -1,13 +1,13 @@
 name: Deploy Interactive Courses
 
 on:
-  push:
-    branches:
-      - main
-      - master
-    tags:
-      - "v*"
   workflow_dispatch:
+    inputs:
+      confirm_beta_deployment:
+        description: "Deploy this beta revision"
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -19,8 +19,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  guard:
+    name: Guard beta deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require explicit deployment confirmation
+        run: |
+          if [ "${{ inputs.confirm_beta_deployment }}" != "true" ]; then
+            echo "Beta deployment is paused. Run validation CI and deploy manually after review."
+            exit 1
+          fi
+
   build:
     name: Build and validate static distribution
+    needs: guard
     runs-on: ubuntu-latest
     timeout-minutes: 15
 

@@ -6,6 +6,7 @@
 (function () {
   const S = {};
   let PROGRESS_KEY = 'ts-progress-v1';
+  const CATALOG_ROUTE = '../courses.html';
 
   // ---------- course metadata and module registry ----------
   // Loaded from course-manifest.json before the first route renders.
@@ -14,6 +15,7 @@
   S.FINAL_QUIZ_HOST = null;
   S.PRESENTATION = null;
   S.OBJECTIVE_MAP = [];
+  S.CATALOG_ROUTE = CATALOG_ROUTE;
 
   // ---------- progress ----------
   S.readProgress = () => {
@@ -416,9 +418,13 @@
     const render = async () => {
       const route = S.currentRoute();
       // topnav active state
-      document.querySelectorAll('.topnav a').forEach((a) => {
-        a.classList.toggle('active', a.getAttribute('data-nav') === (route.page === 'home' ? 'home' : route.id));
-      });
+    document.querySelectorAll('.topnav a').forEach((a) => {
+      a.classList.toggle('active', a.getAttribute('data-nav') === (route.page === 'home' ? 'home' : route.id));
+    });
+    document.querySelectorAll('.catalog-link').forEach((link) => {
+      link.hidden = S.CATALOG_ROUTE === null;
+      if (S.CATALOG_ROUTE !== null) link.setAttribute('href', S.CATALOG_ROUTE);
+    });
       app.innerHTML = '<section class="loading">Loading…</section>';
       try {
         if (route.page === 'module') {

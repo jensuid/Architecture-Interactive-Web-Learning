@@ -91,6 +91,12 @@ function lintCourseContent(manifest) {
   for (const module of manifest.modules) {
     const contentPath = path.join(templateRoot, 'app', 'content', `${module.id}.md`);
     const text = fs.readFileSync(contentPath, 'utf8');
+    const withoutFrontMatter = text.replace(/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/, '');
+    const withoutFencedBlocks = withoutFrontMatter.replace(/```[\s\S]*?```/g, '');
+    const slideCount = withoutFencedBlocks.split(/(?:^|\r?\n)---(?:\r?\n|$)/g).filter(Boolean).length;
+    if (slideCount < 1) {
+      errors.push(`${module.id}.md requires at least two --- separated slides`);
+    }
 
     extractFences(module, text, 'quiz').forEach((block, index) => {
       const id = getConfigValue(block, 'id');
@@ -153,7 +159,7 @@ function lintCourseContent(manifest) {
 
   return {
     schemaVersion: 1,
-    checksRun: ['quiz-schema', 'component-registry', 'media-assets', 'module-routes', 'datasets'],
+    checksRun: ['slide-count', 'quiz-schema', 'component-registry', 'media-assets', 'module-routes', 'datasets'],
     errors,
     warnings,
   };

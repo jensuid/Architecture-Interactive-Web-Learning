@@ -60,6 +60,10 @@
     const next = deck.querySelector('.deck-next');
     if (previous) previous.disabled = active === 0;
     if (next) next.disabled = active === slides.length - 1;
+    const store = JSON.parse(deck.dataset.store || '[]');
+    if (window.TS.renderer && window.TS.renderer.restoreSlideMath) {
+      window.TS.renderer.restoreSlideMath(deck, store);
+    }
     return active;
   }
   D.activateSlide = activateSlide;

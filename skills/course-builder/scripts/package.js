@@ -108,6 +108,7 @@ courses:
   - id: ${catalog.courses[0].id}
     name: ${catalog.courses[0].name}
     version: ${catalog.courses[0].version}
+    status: ${catalog.courses[0].status || 'development'}
     manifest: ${catalog.courses[0].manifest}
     route: ${catalog.courses[0].route}
 `;
@@ -115,7 +116,13 @@ courses:
   const appCatalogPath = path.join(frameworkRoot, 'template', 'app', 'courses.json');
   fs.writeFileSync(appCatalogPath, `${JSON.stringify({
     schemaVersion: catalog.schemaVersion,
-    courses: catalog.courses.map(({ id, name, version, route }) => ({ id, name, version, route })),
+    courses: catalog.courses.map(({ id, name, version, status, route }) => ({
+      id,
+      name,
+      version,
+      status: status || 'development',
+      route,
+    })),
   }, null, 2)}\n`, 'utf8');
 }
 
@@ -245,6 +252,7 @@ courses:
   - id: ${expected.courses[0].id}
     name: ${expected.courses[0].name}
     version: ${expected.courses[0].version}
+    status: ${expected.courses[0].status || 'development'}
     manifest: ${expected.courses[0].manifest}
     route: ${expected.courses[0].route}
 `;
@@ -252,7 +260,13 @@ courses:
   const jsonPath = path.join(frameworkRoot, 'template', 'app', 'courses.json');
   const expectedJson = `${JSON.stringify({
     schemaVersion: expected.schemaVersion,
-    courses: expected.courses.map(({ id, name, version, route }) => ({ id, name, version, route })),
+    courses: expected.courses.map(({ id, name, version, status, route }) => ({
+      id,
+      name,
+      version,
+      status: status || 'development',
+      route,
+    })),
   }, null, 2)}\n`;
   const yamlPassed = fs.existsSync(yamlPath) && fs.readFileSync(yamlPath, 'utf8') === expectedYaml;
   const jsonPassed = fs.existsSync(jsonPath) && fs.readFileSync(jsonPath, 'utf8') === expectedJson;

@@ -43,6 +43,17 @@ function assertInput(curriculum) {
   return errors;
 }
 
+function assertGeneratedSlideCount(moduleMarkdownText, moduleId) {
+  const withoutFrontMatter = moduleMarkdownText.replace(/^---\n[\s\S]*?\n---(?:\n|$)/, '');
+  const withoutFencedBlocks = withoutFrontMatter.replace(/```[\s\S]*?```/g, '');
+  const bodySeparators = withoutFencedBlocks.match(/(?:^|\n)---(?:\n|$)/g) || [];
+  const slideCount = bodySeparators.length + 1;
+  if (slideCount < 2) {
+    return [`${moduleId} must generate at least two --- separated slides`];
+  }
+  return [];
+}
+
 function manifestFromCurriculum(curriculum) {
   const modules = curriculum.modules.map((module) => ({
     id: module.id,
@@ -57,7 +68,7 @@ function manifestFromCurriculum(curriculum) {
   })));
   return {
     schemaVersion: 1,
-    course: curriculum.course,
+    course: { ...curriculum.course, status: curriculum.course.status || 'development' },
     modules,
     finalQuizHost: curriculum.finalQuizHost === undefined ? null : curriculum.finalQuizHost,
     objectiveMap,
@@ -131,7 +142,11 @@ function copyRuntime(source, target, course) {
         fs.writeFileSync(targetPath, runtime
           .replace('learning-platform-template-theme', `${course.id}-theme`)
           .replace('<title>Learning Platform — Interactive Course Template</title>', `<title>${escapeHtml(course.name)}</title>`)
-          .replace('📚 Your Course Name', `📚 ${escapeHtml(course.name)}`), 'utf8');
+          .replace('📚 Your Course Name', `📚 ${escapeHtml(course.name)}`)
+          .replace(
+            '<div class="top-actions">',
+            '<div class="top-actions"><a class="btn catalog-link" href="../courses.html">Course catalog</a>',
+          ), 'utf8');
       } else if (entry.name === 'teacher.html') {
         const runtime = fs.readFileSync(sourcePath, 'utf8');
         fs.writeFileSync(targetPath, runtime
@@ -167,6 +182,7 @@ function updateCatalog(course) {
           `  - id: ${course.id}`,
           `    name: ${course.name}`,
           `    version: ${course.version}`,
+          `    status: ${course.status || 'development'}`,
           `    manifest: courses/${course.id}/course-manifest.json`,
           `    route: courses/${course.id}/index.html`,
         );
@@ -182,6 +198,7 @@ function updateCatalog(course) {
       `  - id: ${course.id}`,
       `    name: ${course.name}`,
       `    version: ${course.version}`,
+      `    status: ${course.status || 'development'}`,
       `    manifest: courses/${course.id}/course-manifest.json`,
       `    route: courses/${course.id}/index.html`,
     );
@@ -199,7 +216,16 @@ function main() {
   const inputErrors = assertInput(curriculum);
   const manifest = manifestFromCurriculum(curriculum);
   const manifestErrors = validateCourse(manifest);
-  const errors = [...inputErrors, ...manifestErrors.map((message) => `manifest: ${message}`)];
+  const moduleMarkdownTexts = curriculum.modules.map((module) => ({
+    id: module.id,
+    markdown: inputErrors.length || manifestErrors.length ? '' : moduleMarkdown(module),
+  }));
+  const slideErrors = moduleMarkdownTexts.flatMap(({ id, markdown }) => assertGeneratedSlideCount(markdown, id));
+  const errors = [
+    ...inputErrors,
+    ...manifestErrors.map((message) => `manifest: ${message}`),
+    ...slideErrors,
+  ];
   const target = path.join(generatedRoot, curriculum.course.id);
 
   if (!errors.length) {
@@ -227,6 +253,7 @@ function main() {
     validation: {
       input: inputErrors,
       manifest: manifestErrors,
+      slides: slideErrors,
     },
     warnings: [],
     generatedBy: 'template/scripts/course-factory.js',

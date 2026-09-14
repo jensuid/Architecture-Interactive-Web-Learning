@@ -3,10 +3,12 @@ courses:
   - id: fixture-course
     name: Fixture Course
     version: v1
+    status: development
     manifest: template/app/course-manifest.json
     route: template/app/index.html
   - id: fixture-course
     name: Duplicate Course
     version: v1
+    status: beta
     manifest: template/app/course-manifest.json
     route: template/app/index.html

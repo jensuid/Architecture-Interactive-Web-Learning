@@ -58,7 +58,7 @@
   function extractFences(body) {
     const store = [];
     const re = new RegExp('```(' + FENCES.join('|') + ')\\n([\\s\\S]*?)```', 'g');
-    const mathRe = /\$\$[\s\S]*?\$\$|\$(?!\d)(?!\s)[^$\n]+?(?<!\s)\$(?!\d)/g;
+    const mathRe = /\$\$[\s\S]*?\$\$|\$(?!\$)(?!\d)(?!\s)[^$\n]+?(?<!\s)\$(?!\$)(?!\d)/g;
     const stash = (s) => { store.push({ kind: 'raw', content: s }); return `%%RAW${store.length - 1}%%`; };
     const text = body
       .replace(re, (full, kind, content) => {
@@ -276,6 +276,7 @@
     const active = window.TS.shell.currentSlide(id);
     const deck = root.querySelector('.deck');
     window.TS.deck.activateSlide(deck, active);
+    window.TS.renderer.restoreSlideMath(deck, extracted.store);
     window.TS.shell.bindDeck(deck, id);
     const deckRoot = root.querySelector('.doc');
     const readBody = root.querySelector('.read-body');
@@ -284,6 +285,12 @@
     deck.hidden = readMode;
     readBody.hidden = !readMode;
     readToggle.textContent = readMode ? 'Flow mode' : 'Read mode';
+  };
+
+  R.restoreSlideMath = function(deck, store) {
+    const slide = deck.querySelector('.slide.active');
+    if (!slide) return;
+    restoreMath(slide, store);
   };
 
   // Datasets are fetched lazily by NAME (no hardcoded list): any JSON you drop
@@ -326,6 +333,25 @@
       : escapeHtml(code);
     const lines = code.split('\n');
     const gutter = lines.map((_, j) => j + 1).join('\n');
+    const copyButton = document.createElement('button');
+    copyButton.type = 'button';
+    copyButton.className = 'btn copy-code';
+    copyButton.textContent = 'Copy';
+    copyButton.setAttribute('aria-label', `Copy ${meta.label}`);
+    copyButton.addEventListener('click', async () => {
+      try {
+        if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('clipboard unavailable');
+        await navigator.clipboard.writeText(code);
+        copyButton.textContent = 'Copied';
+      } catch (error) {
+        copyButton.textContent = 'Copy failed';
+      }
+      copyButton.classList.add(copyButton.textContent === 'Copied' ? 'copy-success' : 'copy-failure');
+      window.setTimeout(() => {
+        copyButton.textContent = 'Copy';
+        copyButton.classList.remove('copy-success', 'copy-failure');
+      }, 1600);
+    });
     holder.innerHTML = `
       <div class="codeview codeview-${store[i].kind}">
         <div class="codeview-head"><span>${meta.label}</span><span>${lines.length} lines</span></div>
@@ -334,6 +360,7 @@
           <pre><code class="${meta.language ? `hljs language-${meta.language}` : 'plain-code'}">${hl}</code></pre>
         </div>
       </div>${annoLines ? annoHTML(annoLines) : ''}`;
+    holder.querySelector('.codeview-head').appendChild(copyButton);
     if (annoLines) {
       store[i + 1].consumed = true; // anno attached; skip its placeholder
       const nextHolder = holder.closest('.doc').querySelector(`[data-i="${i + 1}"]`);

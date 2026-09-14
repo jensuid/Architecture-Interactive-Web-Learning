@@ -429,7 +429,10 @@ main { width: 100%; max-width: 860px; margin: 0 auto; padding: 2rem 1.4rem 3.5re
   transition: filter .15s, transform .1s;
 }
 .quiz-actions button:hover, .btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
-.quiz-actions button:disabled { opacity: .5; cursor: default; transform: none; }
+.quiz-actions button:disabled, .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; filter: none; }
+.copy-code { margin-left: auto; }
+.copy-code.copy-success { outline: 2px solid #34d399; outline-offset: 2px; }
+.copy-code.copy-failure { outline: 2px solid #f87171; outline-offset: 2px; }
 .quiz-actions button.secondary, .btn.secondary {
   background: var(--panel); color: var(--text); border: 1px solid var(--border);
 }
@@ -738,9 +741,13 @@ main { width: 100%; max-width: 860px; margin: 0 auto; padding: 2rem 1.4rem 3.5re
 .lab-stepper button:disabled { opacity: .45; cursor: default; transform: none; }
 
 /* ---------- generic diagram component ---------- */
-.diagram-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .8rem; margin: .8rem 0; }
-.diagram-group { background: var(--surface); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: .8rem; }
-.diagram-group h3 { font-size: .78rem; color: var(--accent); margin-bottom: .5rem; text-transform: uppercase; letter-spacing: .04em; }
+.diagram-canvas { border: 1px solid var(--border-soft); border-radius: var(--radius); background: var(--surface); margin: .8rem 0; overflow-x: auto; }
+.diagram-svg { min-width: 560px; width: 100%; height: auto; }
+.diagram-svg .node rect { fill: var(--panel); stroke: var(--border); }
+.diagram-svg .node text { fill: var(--text); font-size: 12px; font-family: inherit; }
+.diagram-svg .relationship path { fill: none; stroke: var(--accent); stroke-width: 2; marker-end: url(#diagram-arrow); }
+.diagram-svg .relationship text { fill: var(--muted); font-size: 10px; font-family: inherit; }
+.diagram-svg .relationship rect { fill: var(--surface); stroke: none; }
 .diagram-group ul { display: flex; flex-direction: column; gap: .4rem; list-style: none; margin: 0; padding: 0; }
 .diagram-group li { border: 1px solid var(--border-soft); border-radius: var(--radius); padding: .5rem .65rem; background: var(--panel); font-size: .86rem; }
 .diagram-description { color: var(--muted); font-size: .88rem; margin-top: .7rem; }

@@ -11,7 +11,8 @@
   ],
   "validation": {
     "input": [],
-    "manifest": []
+    "manifest": [],
+    "slides": []
   },
   "warnings": [],
   "generatedBy": "template/scripts/course-factory.js",

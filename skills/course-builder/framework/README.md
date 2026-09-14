@@ -45,7 +45,7 @@ node template/scripts/verify-publish.js
 
 ## Portable Release
 
-- Repository: [jensuid/course-factory](https://github.com/jensuid/course-factory)
+- Repository: [jensuid/course-builder](https://github.com/jensuid/course-builder)
 - Latest portable package name: `course-builder` (pending a new tagged release)
 - Embedded framework mirror: `skills/course-builder/framework/`
 - Rebuild command: `node skills/course-builder/scripts/package.js`

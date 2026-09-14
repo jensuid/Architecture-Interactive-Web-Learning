@@ -17,7 +17,13 @@ function main() {
   const catalog = parseCatalogSource(sourcePath);
   const output = {
     schemaVersion: catalog.schemaVersion,
-    courses: catalog.courses.map(({ id, name, version, route }) => ({ id, name, version, route })),
+    courses: catalog.courses.map(({ id, name, version, status, route }) => ({
+      id,
+      name,
+      version,
+      status,
+      route,
+    })),
   };
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');

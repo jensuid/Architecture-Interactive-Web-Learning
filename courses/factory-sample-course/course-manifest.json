@@ -3,7 +3,8 @@
   "course": {
     "id": "factory-sample-course",
     "name": "Factory Sample Course",
-    "version": "v1.0"
+    "version": "v1.0",
+    "status": "development"
   },
   "modules": [
     {

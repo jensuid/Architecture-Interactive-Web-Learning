@@ -182,7 +182,7 @@
       "output": [
         "published deterministic multi-course static site: ../dist",
         "courses: 2",
-        "files: 91"
+        "files: 84"
       ]
     },
     {
@@ -194,7 +194,7 @@
         "{",
         "  \"schemaVersion\": 1,",
         "  \"status\": \"passed\",",
-        "  \"fileCount\": 92,",
+        "  \"fileCount\": 85,",
         "  \"errors\": []",
         "}"
       ]
@@ -227,8 +227,8 @@
         "    }",
         "  ],",
         "  \"releaseProvenance\": {",
-        "    \"releaseTime\": \"2026-09-13T13:59:14.937Z\",",
-        "    \"buildManifestSha256\": \"9b72b82f880273ee611ac95ecd8c5b90b0ca330e181b222d0551cc5725e8ff76\",",
+        "    \"releaseTime\": \"2026-09-14T02:43:23.226Z\",",
+        "    \"buildManifestSha256\": \"fdbcf39f4f55c5374db15e317d9861d7eabedaec3ca7dd3d509a43d0fc4415ab\",",
         "    \"runtimeCompatibility\": \"schemaVersion 1\"",
         "  }",
         "}"

@@ -55,6 +55,8 @@ function validateSkillStructure(checks) {
     'scripts/init.js',
     'scripts/package.js',
     'scripts/validate.js',
+    'scripts/update-skill.js',
+    'skill-version.json',
     'framework/package-manifest.json',
     'framework/AGENT.md',
     'framework/course.yaml',

@@ -6,6 +6,7 @@ const { spawnSync } = require('child_process');
 
 const skillRoot = path.join(__dirname, '..');
 const frameworkRoot = path.join(skillRoot, 'framework');
+const sourceRoot = path.join(skillRoot, '..', '..');
 
 function parseArgs(argv) {
   const options = { target: null, force: false, install: false, validate: false };
@@ -127,6 +128,7 @@ function main() {
 
   const target = path.resolve(process.cwd(), options.target);
   const validationPath = path.join(target, 'template', 'scripts', 'agent-run.js');
+  const sourceTestModules = path.join(sourceRoot, 'template', 'tests', 'node_modules');
   const steps = [];
   try {
     fs.mkdirSync(target, { recursive: true });
@@ -159,6 +161,9 @@ function main() {
       if (install.status !== 0) throw new Error(`npm ci failed with exit code ${install.status}`);
     } else {
       steps.push({ name: 'install-test-dependencies', status: 'skipped' });
+    }
+    if (!options.install && fs.existsSync(sourceTestModules)) {
+      fs.symlinkSync(sourceTestModules, path.join(target, 'template', 'tests', 'node_modules'), 'junction');
     }
 
     let pipelineStatus = options.validate ? 'failed' : 'skipped';

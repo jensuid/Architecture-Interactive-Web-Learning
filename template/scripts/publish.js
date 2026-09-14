@@ -33,6 +33,7 @@ function sha256(filePath) {
 }
 
 function main() {
+  const includeDevelopment = process.argv.includes('--include-development');
   fs.rmSync(distRoot, { recursive: true, force: true });
   fs.mkdirSync(distRoot, { recursive: true });
 
@@ -40,6 +41,7 @@ function main() {
   const publishedCourses = [];
 
   sourceCatalog.courses.forEach((course) => {
+    if (course.status !== 'production' && !(includeDevelopment && course.status === 'development')) return;
     const routePath = path.join(repositoryRoot, course.route);
     const runtimeRoot = path.dirname(routePath);
     const routeTarget = path.join(distRoot, 'courses', course.id);
@@ -51,9 +53,12 @@ function main() {
       id: course.id,
       name: course.name,
       version: course.version,
+      status: course.status,
       route: `./courses/${course.id}/${path.basename(routePath)}`,
     });
   });
+
+  if (!publishedCourses.length) throw new Error('no production-status courses were selected for publication');
 
   fs.copyFileSync(path.join(appRoot, 'courses.html'), path.join(distRoot, 'courses.html'));
   fs.copyFileSync(path.join(appRoot, 'courses.html'), path.join(distRoot, 'index.html'));
@@ -82,7 +87,7 @@ function main() {
     'courses.json',
     'build-manifest.json',
     ...publishedCourses.map((course) => `courses/${course.id}/index.html`),
-    ...publishedCourses.map((course) => `courses/${course.id}/course-manifest.json`),
+  ...publishedCourses.map((course) => `courses/${course.id}/course-manifest.json`),
   ];
   const missing = required.filter((file) => !fs.existsSync(path.join(distRoot, file)));
   if (missing.length) throw new Error(`dist missing required files: ${missing.join(', ')}`);

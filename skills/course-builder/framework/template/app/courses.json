@@ -5,6 +5,7 @@
       "id": "learning-platform-template",
       "name": "Your Course Name",
       "version": "v2.0",
+      "status": "development",
       "route": "template/app/index.html"
     }
   ]

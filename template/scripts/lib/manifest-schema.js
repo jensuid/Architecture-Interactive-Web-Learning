@@ -126,10 +126,10 @@ function parseCourseSource(sourcePath, contentRoot) {
 function parseCatalogSource(sourcePath) {
   const text = fs.readFileSync(sourcePath, 'utf8');
   const courses = [];
-  const coursePattern = /^ {2}- id: (.+)\r?\n {4}name: (.+)\r?\n {4}version: (.+)\r?\n {4}manifest: (.+)\r?\n {4}route: (.+)$/gm;
+  const coursePattern = /^ {2}- id: (.+)\r?\n {4}name: (.+)\r?\n {4}version: (.+)\r?\n {4}status: (.+)\r?\n {4}manifest: (.+)\r?\n {4}route: (.+)$/gm;
   let match;
   while ((match = coursePattern.exec(text)) !== null) {
-    courses.push({ id: match[1], name: match[2], version: match[3], manifest: match[4], route: match[5] });
+    courses.push({ id: match[1], name: match[2], version: match[3], status: match[4], manifest: match[5], route: match[6] });
   }
   return {
     schemaVersion: Number(get(text, /^schemaVersion: (.+)$/m)),
@@ -257,6 +257,9 @@ function validateCatalog(catalog, root) {
     if (!course || !idPattern.test(course.id || '')) errors.push(`course ${index + 1} has an invalid ID`);
     if (course && !course.name) errors.push(`course ${course.id || index + 1} requires a name`);
     if (course && !course.version) errors.push(`course ${course.id || index + 1} requires a version`);
+    if (course && !['development', 'beta', 'production'].includes(course.status)) {
+      errors.push(`course ${course.id || index + 1} status must be development, beta, or production`);
+    }
     if (!course || !safeRoutePattern.test(course.manifest || '')) errors.push(`course ${course ? course.id : index + 1} manifest contains invalid route characters`);
     if (!course || !safeRoutePattern.test(course.route || '')) errors.push(`course ${course ? course.id : index + 1} route contains invalid route characters`);
     if (!course || !root) return;

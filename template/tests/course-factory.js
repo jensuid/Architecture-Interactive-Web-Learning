@@ -51,6 +51,20 @@ t(
   'generated teacher runtime uses the course name',
   fs.readFileSync(path.join(generatedRoot, 'js', 'teacher.js'), 'utf8').includes('const COURSE_NAME = "Factory Sample Course";'),
 );
+t(
+  'generated course links to catalog',
+  /<a class="btn catalog-link" href="..\/courses.html">Course catalog<\/a>/.test(
+    fs.readFileSync(path.join(generatedRoot, 'index.html'), 'utf8'),
+  ),
+);
+
+t('factory gate emits a multi-slide module', (() => {
+  const markdown = fs.readFileSync(path.join(generatedRoot, 'content', 'M1.md'), 'utf8');
+  const withoutFrontMatter = markdown.replace(/^---\n[\s\S]*?\n---(?:\n|$)/, '');
+  const withoutFencedBlocks = withoutFrontMatter.replace(/```[\s\S]*?```/g, '');
+  const slideCount = ((withoutFencedBlocks.match(/(?:^|\n)---(?:\n|$)/g) || []).length) + 1;
+  return slideCount >= 2 && report.validation.slides.length === 0;
+})());
 
 const repeated = execFileSync(process.execPath, [path.join(templateRoot, 'scripts', 'course-factory.js'), inputPath], {
   cwd: templateRoot,

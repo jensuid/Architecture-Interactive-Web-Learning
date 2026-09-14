@@ -61,6 +61,27 @@ function makeDOM(errors) {
       };
       window.Chart.prototype = {};
       window.addEventListener('error', (e) => errors.push(e.message));
+      let clipboardText = null;
+      let clipboardFailure = null;
+      Object.defineProperty(window, 'navigator', {
+        value: {
+          ...window.navigator,
+          get clipboard() {
+            if (clipboardFailure) throw clipboardFailure;
+            return {
+              writeText: async (text) => {
+                clipboardText = text;
+              },
+            };
+          },
+        },
+        configurable: true,
+      });
+      window.__setClipboardState = (text, failure) => {
+        clipboardText = text;
+        clipboardFailure = failure;
+      };
+      window.__getClipboardText = () => clipboardText;
     },
   });
 }
@@ -137,11 +158,13 @@ function makeDOM(errors) {
     await sleep(900);
     t('M1 renders title', /Getting Started/.test(w.document.querySelector('.doc h1').textContent));
     t('M1 first slide renders prose only', w.document.querySelectorAll('.quiz').length === 0 && w.document.querySelector('.doc table') !== null);
-    w.document.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'p', bubbles: true }));
+    w.TS.shell.enterPresentation();
     await sleep(60);
     t('P enters presentation mode', w.document.documentElement.classList.contains('presenting'));
     t('first slide disables Back', w.document.querySelector('.deck-prev').disabled === true);
     t('first slide enables Next', w.document.querySelector('.deck-next').disabled === false);
+    const deckBackStyle = w.getComputedStyle(w.document.querySelector('.deck-prev'));
+    t('disabled deck button has computed styling', deckBackStyle.cursor === 'not-allowed' && Number(deckBackStyle.opacity) === 0.5);
     w.document.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
     await sleep(60);
     t('presentation arrow advances slides', w.document.querySelector('.deck-indicator').textContent === 'Slide 2 / 2');
@@ -164,10 +187,26 @@ function makeDOM(errors) {
     t('M2 annotations render', w.document.querySelectorAll('.anno-row').length === 3);
     t('SQL renders as a highlighted code window', w.document.querySelector('.codeview-sql code.hljs.language-sql') !== null);
     t('prompt renders as a distinct code window', w.document.querySelector('.codeview-prompt code.plain-code') !== null);
+    t('every codeview has a copy control', w.document.querySelectorAll('.codeview').length > 0
+      && w.document.querySelectorAll('.codeview').length === w.document.querySelectorAll('.codeview .copy-code').length);
+    const promptCopy = Array.from(w.document.querySelectorAll('.codeview-prompt .copy-code')).pop();
+    promptCopy.click();
+    await sleep(30);
+    t('copy control copies exact prompt content', w.__getClipboardText() === 'Explain {concept} to {audience} in {number} steps.\nUse plain language and end with one practical example.'
+      && promptCopy.textContent === 'Copied' && promptCopy.classList.contains('copy-success'));
+    await sleep(1700);
+    t('copy success state resets', promptCopy.textContent === 'Copy' && !promptCopy.classList.contains('copy-success'));
+    w.__setClipboardState(null, new Error('clipboard unavailable'));
+    promptCopy.click();
+    await sleep(30);
+    t('copy failure is visible', promptCopy.textContent === 'Copy failed' && promptCopy.classList.contains('copy-failure'));
+    w.__setClipboardState(null, null);
+    promptCopy.blur();
     t('diagram component registers', w.TS.components.diagram !== undefined);
     t('objectives component registers', w.TS.components.objectives !== undefined);
-    t('diagram groups render', w.document.querySelectorAll('.diagram-group').length === 2);
-    t('diagram is accessible', w.document.querySelector('.diagram-groups[role="group"][aria-label]') !== null
+    t('diagram renders SVG nodes', w.document.querySelectorAll('.diagram-svg .node').length === 3);
+    t('diagram renders SVG relationships', w.document.querySelectorAll('.diagram-svg .relationship path').length === 2);
+    t('diagram is accessible', w.document.querySelector('.diagram-svg[role="img"][aria-labelledby]') !== null
       && w.document.querySelector('.diagram-description') !== null);
     t('M2 chartlab mounts', w.document.querySelector('.lab .chart-wrap canvas') !== null);
     t('M2 has diagnostic plus 2 checkpoints', w.document.querySelectorAll('.quiz').length === 3);
@@ -203,9 +242,15 @@ function makeDOM(errors) {
     facade.dispatchEvent(new w.Event('click', { bubbles: true }));
     await sleep(60);
     t('facade click swaps embed', w.document.querySelector('figure.media.youtube iframe') !== null);
-    const katex = w.document.querySelectorAll('.katex').length;
+    const mathDeck = Array.from(w.document.querySelectorAll('.deck')).find((item) => item.dataset.moduleId === 'M3');
+    if (mathDeck && mathDeck._goTo) mathDeck._goTo(1);
+    await sleep(60);
+    const mathSlide = mathDeck ? mathDeck.querySelector('.slide.active') : w.document.querySelector('.doc');
+    const katex = mathSlide.querySelectorAll('.katex').length;
     t('KaTeX renders (display + inline)', katex >= 3, `katex nodes: ${katex}`);
-    t('no leftover %%RAW%% placeholders', !/%%RAW\d+%%/.test(w.document.querySelector('.doc').innerHTML));
+    t('slide activation restores display and inline math', mathSlide.querySelectorAll('.katex-display .katex').length === 2
+      && mathSlide.querySelectorAll('.katex').length === 3
+      && !/%%RAW\d+%%/.test(mathSlide.innerHTML));
 
     // ---- live badge update ----
     w.localStorage.removeItem('ts-progress-v1');
@@ -243,6 +288,9 @@ function makeDOM(errors) {
     for (const mid of Object.keys(CORRECT)) {
       w.location.hash = `#/module/${mid}`;
       await sleep(850);
+      const nextButton = w.document.querySelector('.deck-next');
+      if (nextButton && !nextButton.disabled) nextButton.click();
+      await sleep(100);
       const quizzes = Array.from(w.document.querySelectorAll('.quiz'));
       quizzes.forEach((q, qi) => {
         const want = CORRECT[mid][qi];

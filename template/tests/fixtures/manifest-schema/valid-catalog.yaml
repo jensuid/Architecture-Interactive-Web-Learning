@@ -3,5 +3,6 @@ courses:
   - id: learning-platform-template
     name: Your Course Name
     version: v2.0
+    status: development
     manifest: template/app/course-manifest.json
     route: template/app/index.html

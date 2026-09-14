@@ -8,8 +8,8 @@
     },
     {
       "file": ".github/workflows/deploy-pages.yml",
-      "size": 1336,
-      "sha256": "80f27802bf425614f9cfba4030a38ad8204c134f2bbb3ff38cbbfd8d06c727e9"
+      "size": 1793,
+      "sha256": "8564eb8c9650b80c34ac6650c232fa98bb12dfc6170c9e0c1d8aefe1116c0395"
     },
     {
       "file": "AGENT.md",
@@ -23,8 +23,8 @@
     },
     {
       "file": "courses.yaml",
-      "size": 189,
-      "sha256": "4887f98e615265db999eca507bbafc810ad0a002c17d9258e14a0f955dbd4ccd"
+      "size": 213,
+      "sha256": "63e7b9af412c97c022b72181fa107c017312bd97c46043c928386603abf87e2d"
     },
     {
       "file": "docs/agent-and-curriculum-prompts.md",
@@ -74,7 +74,7 @@
     {
       "file": "README.md",
       "size": 1925,
-      "sha256": "c438e7108d65c6a4c008062021931d498bb2f0d732f2d484fa2f55c38d3856bd"
+      "sha256": "610c28a69b648e089aab72674fe00306d9589026d1c1e4e322fb260b6975e91e"
     },
     {
       "file": "template/app/assets/themes/architecture-studio.css",
@@ -103,8 +103,8 @@
     },
     {
       "file": "template/app/content/M2.md",
-      "size": 3052,
-      "sha256": "18ba9357f6a4ee000387899e9a99da059df1336b0dc57bcab6da6229ca6e75dc"
+      "size": 3050,
+      "sha256": "3736acd1c7719cc4fa21183e1e921385b5974e38880e34cf359867dc8d58da60"
     },
     {
       "file": "template/app/content/M3.md",
@@ -133,8 +133,8 @@
     },
     {
       "file": "template/app/courses.json",
-      "size": 199,
-      "sha256": "257019126ff53a53975e8d08e181ad6337c1a2fd754fe45a7cd63bcc2bcd550a"
+      "size": 230,
+      "sha256": "5a88e1af677090b4999214ef0d96b0983ac8f3619ae696199f58253025f71ee0"
     },
     {
       "file": "template/app/css/fonts/KaTeX_AMS-Regular.woff2",
@@ -193,8 +193,8 @@
     },
     {
       "file": "template/app/css/style.css",
-      "size": 36775,
-      "sha256": "ea8842910e6819080b897dd6e4d88226c3d1d33d3ab48a3b872336bfdec17d04"
+      "size": 37263,
+      "sha256": "5792b3b97efa6767007a02c3885cfea5ace1c7a0c728b167ed4fc6eb82dee4db"
     },
     {
       "file": "template/app/index.html",
@@ -213,8 +213,8 @@
     },
     {
       "file": "template/app/js/components/diagram.js",
-      "size": 1021,
-      "sha256": "0e5a28fe5f89bc5713ef4161eddb262d08232e115339b0e8ea97e147a73014a8"
+      "size": 4775,
+      "sha256": "9640b73e024767b07fb1d1c45145129bda1539a9df7f13527883778d879becb7"
     },
     {
       "file": "template/app/js/components/flashcard.js",
@@ -243,8 +243,8 @@
     },
     {
       "file": "template/app/js/deck.js",
-      "size": 2455,
-      "sha256": "77cc18a33737b44e72d1d1f01bc06d9aa224abd3ecb56fa6c0ab07b80df83370"
+      "size": 2644,
+      "sha256": "2bc8847b7d50ada23fcf65fbd484d98d25bcdaac75a889d41b4a5c5a37c73426"
     },
     {
       "file": "template/app/js/engine.js",
@@ -258,13 +258,13 @@
     },
     {
       "file": "template/app/js/renderer.js",
-      "size": 19307,
-      "sha256": "f899f23721eafad1eb2bfeafc476a93ec2ed1df270df11f6e5941437fa8288e0"
+      "size": 20469,
+      "sha256": "315804b0c3332a1d9f7cd716fe290cf3232bdba23592291d04757ec4ac7e81e8"
     },
     {
       "file": "template/app/js/shell.js",
-      "size": 19400,
-      "sha256": "289799f6138a7fe1df08dcf8e05fdd93c58bed850b5669782cb429b6457059be"
+      "size": 19673,
+      "sha256": "468174b3f39aeb4a887b0b507148dd1058bd2bebc3d9a988adb2d2de2aabac98"
     },
     {
       "file": "template/app/js/teacher.js",
@@ -313,28 +313,28 @@
     },
     {
       "file": "template/scripts/agent-run.js",
-      "size": 2759,
-      "sha256": "729e7cc90b374d7a985f2de33e09032ca430ecad485636cef2d477a7501d174b"
+      "size": 2782,
+      "sha256": "68b22345c0e55f25cd59311ea052c7cbe9ecf697613ced7a757d39dc530abfcd"
     },
     {
       "file": "template/scripts/compile-catalog.js",
-      "size": 890,
-      "sha256": "6979e892a9eab6d90d4d1fa60ed79c652773f74d36be824f25307aeec4517416"
+      "size": 941,
+      "sha256": "87609749e9706e7bda0466fbe50fc21552ae0810f8c52fbf46c0ffddc5b0310b"
     },
     {
       "file": "template/scripts/compile-course.js",
-      "size": 11891,
-      "sha256": "46d0ec297e44273e6398b57815805480f45b974044de23c9ade34cdb18577675"
+      "size": 12294,
+      "sha256": "5db3e2bb09973bee81cafaae828553a26cf623e22b139afd3e70a45ad78f7c0f"
     },
     {
       "file": "template/scripts/course-factory.js",
-      "size": 9209,
-      "sha256": "0afe1bcd22ec12bd40f900858b3bcd24f9d8d3d006ec8d6c7cb89e8959f52c52"
+      "size": 10411,
+      "sha256": "f639d6f189119b20fe503096047fccd2bf1680fbe3a06fba35b1adc7b0791157"
     },
     {
       "file": "template/scripts/lib/manifest-schema.js",
-      "size": 12949,
-      "sha256": "e746f6966a93d3f4efc06482d28572c5bd0a5434633c9a96fb8c4e2eece21af2"
+      "size": 13181,
+      "sha256": "88099b65cfa63d7bd2b7f4a8dcc004bddb59a8ca2bf8a98b02d18d31cc2a0155"
     },
     {
       "file": "template/scripts/production-check.js",
@@ -343,13 +343,13 @@
     },
     {
       "file": "template/scripts/publish.js",
-      "size": 3851,
-      "sha256": "d2573f0a267ad8342fa030fcaee14de96d311308176193ce3f7cd613e3c080f5"
+      "size": 4175,
+      "sha256": "59ab8ca482fa6b657c0b3003c8fddc2a56ce0d696d23215a6f5709d7563d5d3c"
     },
     {
       "file": "template/scripts/release-check.js",
-      "size": 6183,
-      "sha256": "e21dd5f4aeadf5373a9956869b7f38b1348f779235d73ee2d11982f2d447db3e"
+      "size": 6208,
+      "sha256": "152f64b6ac98365c0025be2eb914665470fb68dbbde1d93da631b1bd811fa864"
     },
     {
       "file": "template/scripts/validate-courses.js",
@@ -363,8 +363,8 @@
     },
     {
       "file": "template/tests/course-factory.js",
-      "size": 2852,
-      "sha256": "daf8c7b1cd47ebc061b09e5a1c11c9a5b844e0903fdeab4885aa6cb49d8136fa"
+      "size": 3528,
+      "sha256": "6670bf14c37f2a44860e4ff7d89918436c7ea9c12ba2a84cccfed90682deea18"
     },
     {
       "file": "template/tests/fixtures/course-factory/curriculum.json",
@@ -378,8 +378,8 @@
     },
     {
       "file": "template/tests/fixtures/manifest-schema/invalid-catalog.yaml",
-      "size": 322,
-      "sha256": "fa1773c70c3112f02898edba8a93a9d309ac8fb2033b972f26622cd4b7a722d7"
+      "size": 363,
+      "sha256": "75b0095d5bdda798e0145bfe32b323ba7c0135e5255a961c6039579be5892b21"
     },
     {
       "file": "template/tests/fixtures/manifest-schema/invalid-course.yaml",
@@ -398,8 +398,8 @@
     },
     {
       "file": "template/tests/fixtures/manifest-schema/valid-catalog.yaml",
-      "size": 189,
-      "sha256": "4887f98e615265db999eca507bbafc810ad0a002c17d9258e14a0f955dbd4ccd"
+      "size": 213,
+      "sha256": "63e7b9af412c97c022b72181fa107c017312bd97c46043c928386603abf87e2d"
     },
     {
       "file": "template/tests/fixtures/manifest-schema/valid-course.yaml",
@@ -408,8 +408,8 @@
     },
     {
       "file": "template/tests/headless.js",
-      "size": 15542,
-      "sha256": "e0b50497b0ba29f2fb9e495e7b5e53731b36497e48b7f9577224393bb6e20f07"
+      "size": 18143,
+      "sha256": "8526da76da3db14cb538dbb250ee8b7f9828b877b3be41dbdec9c7de5ff4a826"
     },
     {
       "file": "template/tests/manifest-schema.js",

@@ -1,2 +1,10 @@
 template/tests/generated/*.json
 notes/skill-prelimanary.md
+dist/
+graphify-out/
+courses/
+node_modules/
+skills/*/framework/
+skills/course-factory/
+skills/course-factory-portable/
+**/.DS_Store
