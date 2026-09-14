@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "status": "passed",
   "generatedBy": "template/scripts/release-check.js",
-  "fileCount": 86,
-  "totalBytes": 1936583,
+  "fileCount": 49,
+  "totalBytes": 997346,
   "steps": [
     {
       "name": "manifest-schema",
@@ -43,7 +43,7 @@
     {
       "name": "deterministic-publish",
       "status": "passed",
-      "command": "scripts/publish.js --include-development"
+      "command": "scripts/publish.js --include-beta"
     },
     {
       "name": "publish-verification",
@@ -63,7 +63,7 @@
     {
       "name": "total static payload budget",
       "status": "passed",
-      "info": "1936583 bytes"
+      "info": "997346 bytes"
     },
     {
       "name": "per-file size budget",
@@ -120,8 +120,8 @@
     }
   ],
   "releaseProvenance": {
-    "releaseTime": "2026-09-14T06:35:29.673Z",
-    "buildManifestSha256": "b2ec4cf39ebd1136c22de7ac7a59a97ace9f4455893d7c6976d9c4f0a759f018",
+    "releaseTime": "2026-09-14T06:52:27.423Z",
+    "buildManifestSha256": "64fd9ebdb092cade3e3f133464bc82ef3efec801adc0e18aa38b6c75ec786274",
     "runtimeCompatibility": "schemaVersion 1"
   }
 }

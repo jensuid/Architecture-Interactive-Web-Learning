@@ -33,7 +33,10 @@ function sha256(filePath) {
 }
 
 function main() {
-  const includeDevelopment = process.argv.includes('--include-development');
+  const args = new Set(process.argv.slice(2));
+  const selectedStatuses = args.has('--include-development')
+    ? ['production', 'development']
+    : args.has('--include-beta') ? ['production', 'beta'] : ['production'];
   fs.rmSync(distRoot, { recursive: true, force: true });
   fs.mkdirSync(distRoot, { recursive: true });
 
@@ -41,7 +44,7 @@ function main() {
   const publishedCourses = [];
 
   sourceCatalog.courses.forEach((course) => {
-    if (course.status !== 'production' && !(includeDevelopment && course.status === 'development')) return;
+    if (!selectedStatuses.includes(course.status)) return;
     const routePath = path.join(repositoryRoot, course.route);
     const runtimeRoot = path.dirname(routePath);
     const routeTarget = path.join(distRoot, 'courses', course.id);
@@ -58,7 +61,7 @@ function main() {
     });
   });
 
-  if (!publishedCourses.length) throw new Error('no production-status courses were selected for publication');
+  if (!publishedCourses.length) throw new Error(`no ${selectedStatuses.join('/')} courses were selected for publication`);
 
   fs.copyFileSync(path.join(appRoot, 'courses.html'), path.join(distRoot, 'courses.html'));
   fs.copyFileSync(path.join(appRoot, 'courses.html'), path.join(distRoot, 'index.html'));

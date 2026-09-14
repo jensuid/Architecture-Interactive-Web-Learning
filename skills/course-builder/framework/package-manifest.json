@@ -23,8 +23,8 @@
     },
     {
       "file": "courses.yaml",
-      "size": 213,
-      "sha256": "63e7b9af412c97c022b72181fa107c017312bd97c46043c928386603abf87e2d"
+      "size": 206,
+      "sha256": "d5deb77fd32673927dd97db08bcae18414ae01c882b5a4371924cd68707b03d6"
     },
     {
       "file": "docs/agent-and-curriculum-prompts.md",
@@ -133,8 +133,8 @@
     },
     {
       "file": "template/app/courses.json",
-      "size": 230,
-      "sha256": "5a88e1af677090b4999214ef0d96b0983ac8f3619ae696199f58253025f71ee0"
+      "size": 223,
+      "sha256": "ded3f42a036d0e5d2e11ccaf984b2a3436f5c9c6620bb39d387c9071794694b3"
     },
     {
       "file": "template/app/css/fonts/KaTeX_AMS-Regular.woff2",
@@ -313,8 +313,8 @@
     },
     {
       "file": "template/scripts/agent-run.js",
-      "size": 2782,
-      "sha256": "68b22345c0e55f25cd59311ea052c7cbe9ecf697613ced7a757d39dc530abfcd"
+      "size": 2775,
+      "sha256": "0145cfb204c811cf0a0e0e97d13a21d169e43e6b3465b739a72533ec1952e3e3"
     },
     {
       "file": "template/scripts/compile-catalog.js",
@@ -343,13 +343,13 @@
     },
     {
       "file": "template/scripts/publish.js",
-      "size": 4175,
-      "sha256": "59ab8ca482fa6b657c0b3003c8fddc2a56ce0d696d23215a6f5709d7563d5d3c"
+      "size": 4281,
+      "sha256": "e2de90400bbb24ad1aacc7b2e0e00d9c72434b597c0234dcdf29212f69754f64"
     },
     {
       "file": "template/scripts/release-check.js",
-      "size": 6208,
-      "sha256": "152f64b6ac98365c0025be2eb914665470fb68dbbde1d93da631b1bd811fa864"
+      "size": 6201,
+      "sha256": "666dbd71d24233fb77200dcf2a0a55e3a90f0ce1e149cbd1fc13d7dd9eddcd08"
     },
     {
       "file": "template/scripts/validate-courses.js",
@@ -398,8 +398,8 @@
     },
     {
       "file": "template/tests/fixtures/manifest-schema/valid-catalog.yaml",
-      "size": 213,
-      "sha256": "63e7b9af412c97c022b72181fa107c017312bd97c46043c928386603abf87e2d"
+      "size": 206,
+      "sha256": "d5deb77fd32673927dd97db08bcae18414ae01c882b5a4371924cd68707b03d6"
     },
     {
       "file": "template/tests/fixtures/manifest-schema/valid-course.yaml",
@@ -413,8 +413,8 @@
     },
     {
       "file": "template/tests/manifest-schema.js",
-      "size": 2892,
-      "sha256": "4bd65e359e2b847f5fcaefef44f250984edac0c4325afe10c457c6d24e9dfa91"
+      "size": 2995,
+      "sha256": "0d0134643908c33fba8dd4237b5a46c5775e54e90ca06e5f0eabec2e2e6e435b"
     },
     {
       "file": "template/tests/package-lock.json",

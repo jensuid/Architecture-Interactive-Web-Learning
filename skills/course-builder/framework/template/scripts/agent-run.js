@@ -42,7 +42,7 @@ function main() {
     runStep('production-check', ['scripts/production-check.js']),
     runStep('multi-course-validation', ['scripts/validate-courses.js']),
     runStep('catalog-determinism', ['scripts/compile-catalog.js']),
-  runStep('publish', ['scripts/publish.js', '--include-development']),
+  runStep('publish', ['scripts/publish.js', '--include-beta']),
     runStep('publish-verification', ['scripts/verify-publish.js']),
     (() => ({
       name: 'accessibility-report',

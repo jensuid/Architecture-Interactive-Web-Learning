@@ -33,7 +33,7 @@ function main() {
     runStep('headless-course', ['tests/headless.js']),
     runStep('production-readiness', ['scripts/production-check.js']),
     runStep('multi-course-validation', ['scripts/validate-courses.js']),
-    runStep('deterministic-publish', ['scripts/publish.js', '--include-development']),
+    runStep('deterministic-publish', ['scripts/publish.js', '--include-beta']),
     runStep('publish-verification', ['scripts/verify-publish.js']),
   ];
 

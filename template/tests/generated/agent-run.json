@@ -26,10 +26,11 @@
         "  ✔ unknown objective reference is rejected",
         "  ✔ unmapped objective is rejected",
         "  ✔ valid catalog fixture validates",
+        "  ✔ beta catalog status is accepted",
         "  ✔ duplicate catalog IDs are rejected",
         "  ✔ duplicate catalog routes are rejected",
         "",
-        "manifest schema: 10 passed, 0 failed"
+        "manifest schema: 11 passed, 0 failed"
       ]
     },
     {
@@ -50,9 +51,11 @@
         "  ✔ generated course title is course-specific",
         "  ✔ generated teacher title is course-specific",
         "  ✔ generated teacher runtime uses the course name",
+        "  ✔ generated course links to catalog",
+        "  ✔ factory gate emits a multi-slide module",
         "  ✔ repeat generation is idempotent",
         "",
-        "course factory: 13 passed, 0 failed"
+        "course factory: 15 passed, 0 failed"
       ]
     },
     {
@@ -106,7 +109,7 @@
         "  ✔ youtube facade before click (no iframe)",
         "  ✔ facade click swaps embed",
         "  ✔ KaTeX renders (display + inline)",
-        "  ✔ no leftover %%RAW%% placeholders",
+        "  ✔ slide activation restores display and inline math",
         "  ✔ badge flips to ✓ live after quiz pass",
         "  ✔ progress header updates live",
         "  ✔ M1 has next nav only",
@@ -120,7 +123,7 @@
         "  ✔ objective panel clears recommendations after mastery",
         "  ✔ accessibility audit passes",
         "",
-        "headless: 64 passed, 0 failed"
+        "headless: 70 passed, 0 failed"
       ]
     },
     {
@@ -176,13 +179,13 @@
     },
     {
       "name": "publish",
-      "command": "scripts/publish.js",
+      "command": "scripts/publish.js --include-beta",
       "status": "passed",
       "exitCode": 0,
       "output": [
         "published deterministic multi-course static site: ../dist",
-        "courses: 2",
-        "files: 84"
+        "courses: 1",
+        "files: 47"
       ]
     },
     {
@@ -194,7 +197,7 @@
         "{",
         "  \"schemaVersion\": 1,",
         "  \"status\": \"passed\",",
-        "  \"fileCount\": 85,",
+        "  \"fileCount\": 48,",
         "  \"errors\": []",
         "}"
       ]
@@ -227,8 +230,8 @@
         "    }",
         "  ],",
         "  \"releaseProvenance\": {",
-        "    \"releaseTime\": \"2026-09-14T02:43:23.226Z\",",
-        "    \"buildManifestSha256\": \"fdbcf39f4f55c5374db15e317d9861d7eabedaec3ca7dd3d509a43d0fc4415ab\",",
+        "    \"releaseTime\": \"2026-09-14T06:52:06.189Z\",",
+        "    \"buildManifestSha256\": \"64fd9ebdb092cade3e3f133464bc82ef3efec801adc0e18aa38b6c75ec786274\",",
         "    \"runtimeCompatibility\": \"schemaVersion 1\"",
         "  }",
         "}"

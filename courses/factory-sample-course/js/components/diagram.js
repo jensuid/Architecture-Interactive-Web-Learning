@@ -55,7 +55,7 @@
     });
     holder.classList.add('lab', 'diagram');
     holder.innerHTML = `
-      <div class="lab-head"><span class="t">${title}</span><span class="c">diagram</span></div>
+      <div class="lab-head"><span class="t">${escapeHtml(title)}</span><span class="c">diagram</span></div>
       <div class="diagram-canvas">
         <svg class="diagram-svg" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="${instanceId}-title ${instanceId}-desc">
           <title id="${instanceId}-title">${escapeHtml(title)}</title>
@@ -67,7 +67,7 @@
             const labelX = (from.x + to.x + 150) / 2;
             const labelY = (from.y + to.y) / 2 + 20;
             return `<g class="relationship" aria-label="${escapeHtml(`${relationship.from} ${relationship.label || 'connects to'} ${relationship.to}`)}">
-              <path d="M${from.x + 150},${from.y + 21} C${from.x + 230},${from.y + 21} ${to.x - 80},${to.y + 21} ${to.x - 6},${to.y + 21}"></path>
+              <path d="M${from.x + 150},${from.y + 21} C${from.x + 230},${from.y + 21} ${to.x - 80},${to.y + 21} ${to.x - 6},${to.y + 21}" marker-end="url(#${instanceId}-arrow)"></path>
               <rect x="${labelX - 30}" y="${labelY - 10}" width="60" height="18" rx="4"></rect>
               <text x="${labelX}" y="${labelY + 4}" text-anchor="middle">${escapeHtml(relationship.label || 'connects to')}</text>
             </g>`;

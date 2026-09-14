@@ -48,6 +48,7 @@ t('unmapped objective is rejected', unmappedErrors.some((message) => message.inc
 
 const validCatalog = parseCatalogSource(path.join(fixtureRoot, 'valid-catalog.yaml'));
 t('valid catalog fixture validates', validateCatalog(validCatalog, repositoryRoot).length === 0);
+t('beta catalog status is accepted', validCatalog.courses.some((course) => course.status === 'beta'));
 
 const invalidCatalog = parseCatalogSource(path.join(fixtureRoot, 'invalid-catalog.yaml'));
 const invalidCatalogErrors = validateCatalog(invalidCatalog, repositoryRoot);
