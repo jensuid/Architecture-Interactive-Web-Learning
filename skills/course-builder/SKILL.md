@@ -1,11 +1,11 @@
 ---
-name: course-factory-portable
+name: course-builder
 description: Build topic-agnostic interactive static courses outside the source repository by initializing a packaged course framework and running its unchanged validation pipeline.
 metadata:
   short-description: Generate portable static courses
 ---
 
-# Course Factory Portable
+# Course Builder
 
 Turn a topic and curriculum into a complete, validated static interactive course
 in any destination repository. This skill is self-contained and does not depend
@@ -25,7 +25,7 @@ Do not use it for unrelated web applications.
 1. Validate the skill package before first use:
 
    ```bash
-   node skills/course-factory-portable/scripts/validate.js
+   node skills/course-builder/scripts/validate.js
    ```
 
    When the skill is installed elsewhere, replace the path with the installed
@@ -35,7 +35,7 @@ Do not use it for unrelated web applications.
    When maintaining the skill in its source repository, rebuild it only with:
 
    ```bash
-   node skills/course-factory-portable/scripts/package.js
+   node skills/course-builder/scripts/package.js
    ```
 
    Never manually edit `framework/`. The package command regenerates it from
@@ -45,7 +45,7 @@ Do not use it for unrelated web applications.
 2. Initialize a destination repository:
 
    ```bash
-   node skills/course-factory-portable/scripts/init.js \
+   node skills/course-builder/scripts/init.js \
      --target /absolute/or/relative/destination
    ```
 

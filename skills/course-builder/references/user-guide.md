@@ -1,7 +1,7 @@
-# Course Factory Portable User Guide
+# Course Builder User Guide
 
 This guide explains how to validate, initialize, build, validate, publish, and
-maintain a static interactive course using **Course Factory Portable v2**.
+maintain a static interactive course using **Course Builder v2**.
 
 It is intended for:
 
@@ -11,7 +11,7 @@ It is intended for:
 
 ## 1. What You Get
 
-Course Factory Portable packages a complete, zero-backend course framework:
+Course Builder packages a complete, zero-backend course framework:
 
 - a static learner runtime;
 - a deterministic manifest and catalog compiler;
@@ -56,7 +56,7 @@ intentionally intend to replace the packaged framework paths.
 When this skill is stored in a source repository, its main paths are:
 
 ```text
-skills/course-factory-portable/
+skills/course-builder/
   SKILL.md
   README.md
   scripts/init.js
@@ -68,11 +68,11 @@ skills/course-factory-portable/
     package-manifest.json
 ```
 
-When installed globally, replace `skills/course-factory-portable` with the
+When installed globally, replace `skills/course-builder` with the
 installed skill directory, for example:
 
 ```text
-~/.codex/skills/course-factory-portable
+~/.codex/skills/course-builder
 ```
 
 All examples below use the project-local path.
@@ -82,7 +82,7 @@ All examples below use the project-local path.
 Before initializing a destination, validate the skill package:
 
 ```bash
-node skills/course-factory-portable/scripts/validate.js
+node skills/course-builder/scripts/validate.js
 ```
 
 The validator checks:
@@ -98,7 +98,7 @@ The validator checks:
 To save a machine-readable report:
 
 ```bash
-node skills/course-factory-portable/scripts/validate.js \
+node skills/course-builder/scripts/validate.js \
   --report validation-report.json
 ```
 
@@ -115,7 +115,7 @@ environment before using the skill to initialize a real destination.
 Maintainers regenerate the embedded framework only through:
 
 ```bash
-node skills/course-factory-portable/scripts/package.js
+node skills/course-builder/scripts/package.js
 ```
 
 Never manually edit `framework/`. Run `package.js --check` before committing
@@ -126,7 +126,7 @@ the package to detect canonical drift, prohibited content, and checksum changes.
 From the repository containing the skill:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js \
+node skills/course-builder/scripts/init.js \
   --target ../my-course-repo
 ```
 
@@ -157,7 +157,7 @@ npm ci
 For a complete first-run check:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js \
+node skills/course-builder/scripts/init.js \
   --target ../my-course-repo \
   --install \
   --validate \
@@ -172,7 +172,7 @@ Use this only when jsdom is already resolvable in the destination, for example
 through an existing installation or `NODE_PATH`:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js \
+node skills/course-builder/scripts/init.js \
   --target ../my-course-repo \
   --no-install
 ```
@@ -197,7 +197,7 @@ If these paths already exist, initialization stops without changing them.
 To replace only these packaged framework paths:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js \
+node skills/course-builder/scripts/init.js \
   --target ../my-course-repo \
   --force
 ```
@@ -224,13 +224,13 @@ Before writing a course, create `curriculum.json` in the destination root.
 Start from:
 
 ```text
-skills/course-factory-portable/templates/curriculum.json
+skills/course-builder/templates/curriculum.json
 ```
 
 Copy it to the destination:
 
 ```bash
-cp skills/course-factory-portable/templates/curriculum.json \
+cp skills/course-builder/templates/curriculum.json \
   ../my-course-repo/curriculum.json
 ```
 
@@ -543,7 +543,7 @@ routes, and generated catalog JSON synchronized.
 When prompting an agent, say:
 
 ```text
-Use $course-factory-portable to build a beginner course on
+Use $course-builder to build a beginner course on
 sustainable home energy.
 ```
 

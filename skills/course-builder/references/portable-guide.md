@@ -1,6 +1,6 @@
 # Portable Skill v2
 
-Course Factory Portable v2 packages the framework needed to initialize a course
+Course Builder v2 packages the framework needed to initialize a course
 repository outside the original source checkout.
 
 ## Runtime Contract

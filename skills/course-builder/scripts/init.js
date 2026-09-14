@@ -203,7 +203,7 @@ function main() {
       status: 'failed',
       target,
       steps,
-      generatedBy: 'course-factory-portable/scripts/init.js',
+      generatedBy: 'course-builder/scripts/init.js',
     };
     if (options.report) {
       fs.mkdirSync(path.dirname(path.resolve(process.cwd(), options.report)), { recursive: true });
@@ -218,7 +218,7 @@ function main() {
     status: steps.some((step) => step.status === 'failed') ? 'failed' : 'passed',
     target,
     steps,
-    generatedBy: 'course-factory-portable/scripts/init.js',
+    generatedBy: 'course-builder/scripts/init.js',
   };
   if (options.report) {
     fs.mkdirSync(path.dirname(path.resolve(process.cwd(), options.report)), { recursive: true });

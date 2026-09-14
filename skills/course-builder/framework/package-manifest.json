@@ -43,8 +43,8 @@
     },
     {
       "file": "docs/DOCUMENTATION.md",
-      "size": 3937,
-      "sha256": "a336f662b017d48ac2c9cac145986f3cb9c27a7bac6ab2b8295e86fef120556c"
+      "size": 3829,
+      "sha256": "87f3355a211707a4a3b13065912e84925bb5f3ccea9edbedb99b04ae98031cb4"
     },
     {
       "file": "docs/topic-course-workflow.md",
@@ -73,8 +73,8 @@
     },
     {
       "file": "README.md",
-      "size": 2042,
-      "sha256": "b10b4e4a40fc196ccb71903e2018aed8c7ab621c5173c333eb5c00e08fbe3bc3"
+      "size": 1925,
+      "sha256": "c438e7108d65c6a4c008062021931d498bb2f0d732f2d484fa2f55c38d3856bd"
     },
     {
       "file": "template/app/assets/themes/architecture-studio.css",

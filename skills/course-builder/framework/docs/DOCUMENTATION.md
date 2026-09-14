@@ -31,13 +31,13 @@ Read these first if you are creating your first course:
 
 Use the portable skill when working outside this repository:
 
-- [Portable Skill README](../skills/course-factory-portable/README.md) — package overview, initializer, packaging, and validation commands.
-- [Portable Skill Contract](../skills/course-factory-portable/SKILL.md) — agent-facing boundaries and required workflow.
-- [Portable User Guide](../skills/course-factory-portable/references/user-guide.md) — complete installation, initialization, authoring, publishing, and troubleshooting guide.
-- [Portable Framework Contract](../skills/course-factory-portable/references/framework-contract.md) — runtime files, generated output, and release rules.
-- [Curriculum Prompt](../skills/course-factory-portable/references/curriculum-prompt.md) — curriculum input template and prompt.
-- [Coding Agent Prompt](../skills/course-factory-portable/references/coding-agent-prompt.md) — course enrichment and coding-agent rules.
-- [Mockup Topic Walkthrough](../skills/course-factory-portable/references/mockup-topic-walkthrough.md) — complete concrete end-to-end example.
+- [Portable Skill README](../skills/course-builder/README.md) — package overview, initializer, packaging, and validation commands.
+- [Portable Skill Contract](../skills/course-builder/SKILL.md) — agent-facing boundaries and required workflow.
+- [Portable User Guide](../skills/course-builder/references/user-guide.md) — complete installation, initialization, authoring, publishing, and troubleshooting guide.
+- [Portable Framework Contract](../skills/course-builder/references/framework-contract.md) — runtime files, generated output, and release rules.
+- [Curriculum Prompt](../skills/course-builder/references/curriculum-prompt.md) — curriculum input template and prompt.
+- [Coding Agent Prompt](../skills/course-builder/references/coding-agent-prompt.md) — course enrichment and coding-agent rules.
+- [Mockup Topic Walkthrough](../skills/course-builder/references/mockup-topic-walkthrough.md) — complete concrete end-to-end example.
 
 ## Maintenance And Release
 
@@ -50,14 +50,14 @@ Validate the canonical framework and portable package:
 
 ```bash
 node template/scripts/agent-run.js
-node skills/course-factory-portable/scripts/package.js --check
-node skills/course-factory-portable/scripts/validate.js
+node skills/course-builder/scripts/package.js --check
+node skills/course-builder/scripts/validate.js
 ```
 
 Initialize and validate an empty destination repository:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js \
+node skills/course-builder/scripts/init.js \
   --target /absolute/path/to/destination \
   --install \
   --validate
@@ -72,7 +72,7 @@ node template/scripts/verify-publish.js
 ## Documentation Rules
 
 - Treat `template/` as the only canonical runtime.
-- Do not manually edit `skills/course-factory-portable/framework/`.
-- Rebuild the portable framework with `skills/course-factory-portable/scripts/package.js`.
+- Do not manually edit `skills/course-builder/framework/`.
+- Rebuild the portable framework with `skills/course-builder/scripts/package.js`.
 - Never weaken a validation rule to make a course pass.
 - Never hand-edit generated `dist/` output.

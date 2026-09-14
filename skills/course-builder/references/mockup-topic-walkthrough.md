@@ -1,7 +1,7 @@
-# Course Factory Portable Mockup Topic Walkthrough
+# Course Builder Mockup Topic Walkthrough
 
 This guide builds a complete, concrete mockup topic from beginning to published,
-validated course using **Course Factory Portable v2**.
+validated course using **Course Builder v2**.
 
 The mockup topic is:
 
@@ -15,7 +15,7 @@ The walkthrough uses two tools with a strict separation of responsibility:
 | Implementation | Coding agent | Initialize, generate, enrich, validate, and publish | `agent-run.json` reports `status: "success"` |
 
 The example assumes you are working in a repository that already contains the
-`course-factory-portable` skill.
+`course-builder` skill.
 
 ## 1. Define The Learning Brief Before Prompting
 
@@ -43,7 +43,7 @@ Open your AI assistant chat and use the following prompt verbatim. This prompt i
 designed to stop the assistant before implementation work begins.
 
 ```text
-Use $course-factory-portable to create a curriculum for a beginner-to-intermediate
+Use $course-builder to create a curriculum for a beginner-to-intermediate
 course called "Practical Home Solar Sizing".
 
 Audience: Homeowners.
@@ -111,7 +111,7 @@ handoff prompt. Use this prompt:
 I approved curriculum.json for "Practical Home Solar Sizing".
 
 Prepare a concrete handoff prompt for a coding agent that has access to the
-course-factory-portable skill and the destination repository.
+course-builder skill and the destination repository.
 
 The prompt must require the coding agent to:
 - validate the portable skill;
@@ -145,13 +145,13 @@ Paste the following prompt into the coding agent. It is already optimized for th
 portable skill and the Practical Home Solar Sizing mockup.
 
 ```text
-Use $course-factory-portable to build the approved "Practical Home Solar Sizing"
+Use $course-builder to build the approved "Practical Home Solar Sizing"
 course in the destination repository.
 
 Required files:
 - curriculum.json is already approved and must not be redesigned.
 - Destination repository: home-solar-size
-- Portable skill location: skills/course-factory-portable/
+- Portable skill location: skills/course-builder/
 
 Environment:
 - Work from the repository containing the portable skill.
@@ -163,10 +163,10 @@ Environment:
 
 Required workflow:
 1. Validate the portable skill:
-   node skills/course-factory-portable/scripts/validate.js
+   node skills/course-builder/scripts/validate.js
 
 2. Initialize a fresh destination if needed:
-   node skills/course-factory-portable/scripts/init.js \
+   node skills/course-builder/scripts/init.js \
      --target ../home-solar-size \
      --validate \
      --report ../home-solar-size/initialization-report.json
@@ -298,7 +298,7 @@ pipeline is running.
 From the source repository, validate the portable skill:
 
 ```bash
-node skills/course-factory-portable/scripts/validate.js
+node skills/course-builder/scripts/validate.js
 ```
 
 Required result:
@@ -312,7 +312,7 @@ Required result:
 Then initialize a fresh destination:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js \
+node skills/course-builder/scripts/init.js \
   --target ../home-solar-size \
   --validate \
   --report ../home-solar-size/initialization-report.json

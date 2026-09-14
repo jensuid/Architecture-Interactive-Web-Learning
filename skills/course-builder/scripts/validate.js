@@ -273,7 +273,7 @@ function collectFrameworkFiles() {
 }
 
 function validateTemporaryInitialization(checks) {
-  const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'course-factory-portable-'));
+  const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'course-builder-'));
   const reportPath = path.join(temporaryRoot, 'initialization-report.json');
   const initPath = path.join(skillRoot, 'scripts', 'init.js');
   const testDependencyRoot = path.join(sourceRoot, 'template', 'tests', 'node_modules');
@@ -357,7 +357,7 @@ Options:
   const report = {
     schemaVersion: 1,
     status,
-    generatedBy: 'course-factory-portable/scripts/validate.js',
+    generatedBy: 'course-builder/scripts/validate.js',
     checks,
   };
   if (options.report) {

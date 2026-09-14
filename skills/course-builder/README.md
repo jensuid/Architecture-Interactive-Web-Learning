@@ -1,4 +1,4 @@
-# Course Factory Portable
+# Course Builder
 
 This is skill v2: a portable copy of the course framework and its deterministic
 validation pipeline. It can initialize an empty destination repository and then
@@ -7,7 +7,7 @@ operate exactly like the v1 workflow after initialization.
 ## Package Layout
 
 ```text
-course-factory-portable/
+course-builder/
   SKILL.md
   README.md
   agents/
@@ -32,7 +32,7 @@ generated reports, and repository history.
 From a repository containing this skill:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js --target ../my-course-repo
+node skills/course-builder/scripts/init.js --target ../my-course-repo
 ```
 
 The command:
@@ -48,7 +48,7 @@ not already installed the packaged test dependency.
 Add `--validate` to run the pipeline during initialization:
 
 ```bash
-node skills/course-factory-portable/scripts/init.js \
+node skills/course-builder/scripts/init.js \
   --target ../my-course-repo --validate
 ```
 
@@ -66,7 +66,7 @@ framework paths.
 The portable packaging command:
 
 ```bash
-node skills/course-factory-portable/scripts/package.js
+node skills/course-builder/scripts/package.js
 ```
 
 It rebuilds the embedded framework from canonical `template/` and root
@@ -86,7 +86,7 @@ The portable validator checks:
 Run:
 
 ```bash
-node skills/course-factory-portable/scripts/validate.js
+node skills/course-builder/scripts/validate.js
 ```
 
 Optional arguments:

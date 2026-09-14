@@ -350,7 +350,7 @@ function main() {
     const report = {
       schemaVersion: 1,
       status: 'failed',
-      generatedBy: 'course-factory-portable/scripts/package.js',
+      generatedBy: 'course-builder/scripts/package.js',
       checks: [{ name: 'portable-framework', status: 'failed', details: { missing: 'framework/' } }],
     };
     console.log(JSON.stringify(report, null, 2));
@@ -368,7 +368,7 @@ function main() {
   const report = {
     schemaVersion: 1,
     status: result.passed ? 'passed' : 'failed',
-    generatedBy: 'course-factory-portable/scripts/package.js',
+    generatedBy: 'course-builder/scripts/package.js',
     checks: result.checks,
   };
   if (options.report) {
